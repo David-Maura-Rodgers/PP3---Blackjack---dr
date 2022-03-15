@@ -30,12 +30,23 @@ for i in range(2):
 
 
 # FUNCTION takes a List of cards as input and returns the score. 
-def calucate_card_sum():
+def calucate_card_sum(all_cards):
+    '''
+    FUNCTION: check for a Blackjack:
+    (a hand with only 2 cards: ace + 10) and return 0
+    instead of the actual score. 0 will represent a blackjack
+    '''
+    # CODE: if sum(cards) == 21 and len(cards) == 2:
+    if 11 in all_cards and 10 in all_cards and len(all_cards) == 2:
+        return 0
+   
+    # Check for an 11 (ace). If the score is already over 21:
+    # remove the 11 and replace it with a 1
+    if 11 in all_cards and sum(all_cards) > 21:
+        all_cards.remove(11)
+        all_cards.append(1)
     
-
-
-
-
+    return sum(all_cards)
 
 
 # --- BUGS ---- \\
