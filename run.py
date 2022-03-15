@@ -8,33 +8,13 @@
 import random
 
 
-def random_card():
-    '''
-    FUNCTION: Will loop through available cards
-    and assign a random card to player
-    '''
-    all_cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-    chosen_card = random.choice(all_cards)
-    return chosen_card
-
-
-# Deal the user and computer 2 cards each
-user_cards = []
-com_cards = []
-
-# This for loop will run twice with 'range(2)'
-# use append to have random_card function to output as a list
-for i in range(2):
-    user_cards.append(random_card())
-    com_cards.append(random_card())
-
-
 # FUNCTION takes a List of cards as input and returns the score. 
-def calucate_card_sum(all_cards):
+def calculate_card_sum(all_cards):
     '''
     FUNCTION: check for a Blackjack:
-    (a hand with only 2 cards: ace + 10) and return 0
-    instead of the actual score. 0 will represent a blackjack
+    a hand with only 2 cards: ace + 10, and return 0
+    FUNCTION: Take list of both hands (user and com)
+    and return the sum of those cards
     '''
     # CODE: if sum(cards) == 21 and len(cards) == 2:
     if 11 in all_cards and 10 in all_cards and len(all_cards) == 2:
@@ -47,6 +27,39 @@ def calucate_card_sum(all_cards):
         all_cards.append(1)
     
     return sum(all_cards)
+
+
+def random_card():
+    '''
+    FUNCTION: Will loop through available cards
+    and assign a random card to player
+    '''
+    all_cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+    chosen_card = random.choice(all_cards)
+    return chosen_card
+
+
+# GLOBAL VARIABLES
+user_cards = []
+com_cards = []
+game_over = False
+
+# This for loop will run twice with 'range(2)'
+# use append to have random_card function to output as a list
+for i in range(2):
+    user_cards.append(random_card())
+    com_cards.append(random_card())
+
+
+# Call 'calculate_score'. If the computer or the user has a blackjack (0)
+# or if the user's score is over 21, then the game ends.
+user_hand = calculate_card_sum(user_cards)
+com_hand = calculate_card_sum(com_cards)
+print(f"Your hand: {user_cards} current score: {user_hand}")
+print(f"Dealers first card is: {com_cards[0]}")
+
+if user_hand == 0 or com_hand == 0 or user_hand > 21:
+    game_hand = True
 
 
 # --- BUGS ---- \\
