@@ -7,6 +7,11 @@
 # cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 import random
 
+# GLOBAL VARIABLES
+user_cards = []
+com_cards = []
+game_over = False
+
 
 # FUNCTION takes a List of cards as input and returns the score. 
 def calculate_card_sum(all_cards):
@@ -39,11 +44,6 @@ def random_card():
     return chosen_card
 
 
-# GLOBAL VARIABLES
-user_cards = []
-com_cards = []
-game_over = False
-
 # This for loop will run twice with 'range(2)'
 # use append to have random_card function to output as a list
 for i in range(2):
@@ -51,22 +51,34 @@ for i in range(2):
     com_cards.append(random_card())
 
 
-# Call 'calculate_score'. If the computer or the user has a blackjack (0)
-# or if the user's score is over 21, then the game ends.
-user_hand = calculate_card_sum(user_cards)
-com_hand = calculate_card_sum(com_cards)
-print(f"Your hand: {user_cards} current score: {user_hand}")
-print(f"Dealers first card is: {com_cards[0]}")
+# The score will need to be rechecked with every new card drawn
+# and the checks in 'calculate_card_sum' need to be repeated 
+# until the game ends.
+while not game_over:
+    # Call 'calculate_score'. If the computer or the user has a blackjack (0)
+    # or if the user's score is over 21, then the game ends.
+    user_hand = calculate_card_sum(user_cards)
+    com_hand = calculate_card_sum(com_cards)
+    print(f"Your hand: {user_cards} current score: {user_hand}")
+    print(f"Dealers first card is: {com_cards[0]}")
 
-if user_hand == 0 or com_hand == 0 or user_hand > 21:
-    game_over = True
-else:
-    user_deal_again = input("Type 'y' to deal again or 'n' to pass: ").lower()
-    if user_deal_again == "y":
-        user_cards.append(random_card())
-    else:
+    if user_hand == 0 or com_hand == 0 or user_hand > 21:
         game_over = True
+    else:
+        user_deal_again = input("Type 'y' to deal \
+again or 'n' to pass: ").lower()
+        if user_deal_again == "y":
+            user_cards.append(random_card())
+        else:
+            game_over = True
 
+
+# Once the user is done, it's time to let the computer play.
+# The computer should keep drawing cards as long as it has
+# a score less than 17.
+while com_hand != 0 and com_hand < 17:
+    com_cards.append(random_card())
+    com_score = calculate_card_sum(com_cards)
 
 # --- BUGS ---- \\
 # user_cards += new_card did not work, so had to use append to put random_card 
