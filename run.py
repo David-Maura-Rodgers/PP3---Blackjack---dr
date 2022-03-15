@@ -59,7 +59,13 @@ print(f"Your hand: {user_cards} current score: {user_hand}")
 print(f"Dealers first card is: {com_cards[0]}")
 
 if user_hand == 0 or com_hand == 0 or user_hand > 21:
-    game_hand = True
+    game_over = True
+else:
+    user_deal_again = input("Type 'y' to deal again or 'n' to pass: ").lower()
+    if user_deal_again == "y":
+        user_cards.append(random_card())
+    else:
+        game_over = True
 
 
 # --- BUGS ---- \\
