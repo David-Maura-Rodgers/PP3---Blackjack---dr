@@ -1,10 +1,10 @@
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
-
 # TO RUN CODE: python3 run.py
-
 # The Jack/Queen/King all count as 10
 # The Ace can count as 11 or 1
 # cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+
+
 import random
 
 # GLOBAL VARIABLES
@@ -13,7 +13,16 @@ com_cards = []
 game_over = False
 
 
-# FUNCTION takes a List of cards as input and returns the score. 
+def random_card():
+    '''
+    FUNCTION: Will loop through available cards
+    and assign a random card to player
+    '''
+    all_cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+    chosen_card = random.choice(all_cards)
+    return chosen_card
+
+
 def calculate_card_sum(all_cards):
     '''
     FUNCTION: check for a Blackjack:
@@ -34,14 +43,30 @@ def calculate_card_sum(all_cards):
     return sum(all_cards)
 
 
-def random_card():
+# pass in the user_score and computer_score. If the computer and user
+# both have the same score, then it's a draw. If the computer has
+# a blackjack (0), then the user loses. If the user has a blackjack (0),
+# then the user wins. If the user_score is over 21, then the user
+# (and vice versa). If none of the above, then the player with the 
+# highest score wins
+def compare_hands(user_hand, com_hand):
     '''
-    FUNCTION: Will loop through available cards
-    and assign a random card to player
+    FUNCTION: Compare values of user_hand and com_hand and determine the winner
     '''
-    all_cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-    chosen_card = random.choice(all_cards)
-    return chosen_card
+    if user_hand == com_hand:
+        return "This round is a draw . . ."
+    elif com_hand == 0:
+        return "You lose - dealer has Blackjack!!"
+    elif user_hand == 0:
+        return "Win with a Blackjack 😎"
+    elif user_hand > 21:
+        return "You went over. You lose 😭"
+    elif com_hand > 21:
+        return "Opponent went over. You win 😁"
+    elif user_hand > com_hand:
+        return "You win 😃"
+    else:
+        return "You lose 😤"
 
 
 # This for loop will run twice with 'range(2)'
