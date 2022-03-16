@@ -8,6 +8,7 @@
 
 
 import random
+# import rules from gamerules
 
 # GLOBAL VARIABLES
 user_cards = []
