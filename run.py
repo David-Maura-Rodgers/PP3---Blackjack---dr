@@ -1,13 +1,6 @@
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 # TO RUN CODE: python3 run.py
 
-# The Jack/Queen/King all count as 10
-# The Ace can count as 11 or 1
-# cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-
-# Will feedback to user - "Hello David"
-# print("Hello " + input("What is your name? "))
-
 
 import random
 # import rules from gamerules
@@ -17,6 +10,8 @@ import random
 # GLOBAL VARIABLES
 user_cards = []
 com_cards = []
+user_hand = 0
+com_hand = 0
 game_over = False
 START_BET = 30
 BET_20 = 20
@@ -25,8 +20,10 @@ BET_80 = 80
 player_bet = 0
 dealer_bet = None
 betting_over = False
-bets_placed = 0
-game_over = False
+is_game_over = False
+round_pot = 0
+player_pot = 500
+dealer_pot = 500
 
 
 def random_card():
@@ -47,30 +44,47 @@ def place_bet():
     global bets_placed
     global player_bet
     global dealer_bet
+    global round_pot
     print("Betting always starts at €30")
     
     while not betting_over:
         should_bet = input("Would you like to place bet? 'y' for yes,\
 'n' for no: ").lower()
         if should_bet == "n":
+            player_bet = START_BET
+            dealer_bet = START_BET
+            round_pot = player_bet + dealer_bet
+            print(f" Player bet this hand: €{player_bet}")
+            print(f" Dealer bet this hand: €{dealer_bet}")
+            print(f" Pot for this round is €{round_pot}")
+            print("\n")
             betting_over = True
         else:
             player_bet = int(input("Please enter bet: 20, 40 or 80: "))
         if player_bet == 20:
             player_bet = BET_20 + START_BET
             dealer_bet = player_bet
+            round_pot = player_bet + dealer_bet
             print(f" Player bet this hand: €{player_bet}")
             print(f" Dealer bet this hand: €{dealer_bet}")
+            print(f" Pot for this round is €{round_pot}")
+            print("\n")
         if player_bet == 40:
             player_bet = BET_40 + START_BET
             dealer_bet = player_bet
+            round_pot = player_bet + dealer_bet
             print(f" Player bet this hand: €{player_bet}")
             print(f" Dealer bet this hand: €{dealer_bet}")
+            print(f" Pot for this round is €{round_pot}")
+            print("\n")
         if player_bet == 80:
             player_bet = BET_80 + START_BET
             dealer_bet = player_bet
+            round_pot = player_bet + dealer_bet
             print(f" Player bet this hand: €{player_bet}")
             print(f" Dealer bet this hand: €{dealer_bet}")
+            print(f" Pot for this round is €{round_pot}")
+            print("\n")
 
         return player_bet
         return dealer_bet
@@ -106,19 +120,51 @@ def compare_hands(user_hand, com_hand):
     '''
     FUNCTION: Compare values of user_hand and com_hand and determine the winner
     '''
+    global player_pot
+    global dealer_pot
     if user_hand == com_hand:
         return "This round is a draw . . ."
     elif com_hand == 0:
+        player_pot = player_pot - round_pot
+        dealer_pot = dealer_pot + round_pot
+        print(f"Player Pot is now: €{player_pot}")
+        print(f"Dealer Pot is now: €{dealer_pot}")
+        print("\n")
         return "You lose - dealer has Blackjack!!"
     elif user_hand == 0:
-        return "Win with a Blackjack 😎"
+        player_pot = player_pot + round_pot
+        dealer_pot = dealer_pot - round_pot
+        print(f"Player Pot is now: €{player_pot}")
+        print(f"Dealer Pot is now: €{dealer_pot}")
+        print("\n")
+        return "You Win - with a Blackjack 😎"
     elif user_hand > 21:
+        player_pot = player_pot - round_pot
+        dealer_pot = dealer_pot + round_pot
+        print(f"Player Pot is now: €{player_pot}")
+        print(f"Dealer Pot is now: €{dealer_pot}")
+        print("\n")
         return "You went over. You lose 😭"
     elif com_hand > 21:
+        player_pot = player_pot + round_pot
+        dealer_pot = dealer_pot - round_pot
+        print(f"Player Pot is now: €{player_pot}")
+        print(f"Dealer Pot is now: €{dealer_pot}")
+        print("\n")
         return "Opponent went over. You win 😁"
     elif user_hand > com_hand:
+        player_pot = player_pot + round_pot
+        dealer_pot = dealer_pot - round_pot
+        print(f"Player Pot is now: €{player_pot}")
+        print(f"Dealer Pot is now: €{dealer_pot}")
+        print("\n")
         return "You win 😃"
     else:
+        player_pot = player_pot - round_pot
+        dealer_pot = dealer_pot + round_pot
+        print(f"Player Pot is now: €{player_pot}")
+        print(f"Dealer Pot is now: €{dealer_pot}")
+        print("\n")
         return "You lose 😤"
 
 
@@ -131,6 +177,8 @@ def play_game():
     global user_cards
     global com_cards
     global game_over
+    global user_hand
+    global com_hand
     # print(logo)
 
 
@@ -150,6 +198,7 @@ def play_game():
         com_hand = calculate_card_sum(com_cards)
         print(f"Your hand: {user_cards} current score: {user_hand}")
         print(f"Dealers first card is: {com_cards[0]}")
+        print("\n")
 
         if user_hand == 0 or com_hand == 0 or user_hand > 21:
             game_over = True
@@ -178,9 +227,12 @@ again or 'n' to pass: ").lower()
 # If they answer yes: clear the console and start a new game of blackjack 
 # and show the logo from art.py.
 while input("Do you want to play a game of Blackjack? \
-Type 'y' or 'n': ").lower() == "y":
+Type 'y' or 'n': \n").lower() == "y":
+    print("\n")
+    place_bet()
     play_game()
     # clear()
+
 
 # --- BUGS ---- \\
 # user_cards += new_card did not work, so had to use append to put random_card 
