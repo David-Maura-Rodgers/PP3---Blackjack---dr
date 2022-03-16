@@ -1,14 +1,18 @@
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 # TO RUN CODE: python3 run.py
+
 # The Jack/Queen/King all count as 10
 # The Ace can count as 11 or 1
 # cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+
 # Will feedback to user - "Hello David"
 # print("Hello " + input("What is your name? "))
 
 
 import random
 # import rules from gamerules
+# Need to use clear function (os system)
+# from art import logo
 
 # GLOBAL VARIABLES
 user_cards = []
@@ -72,42 +76,65 @@ def compare_hands(user_hand, com_hand):
         return "You lose 😤"
 
 
+def play_game():
+    '''
+    FUNCTION: Will start the game:
+    Deal random cards into player's and dealer's hands
+    Check for end game considtion and ask if user wants to play again
+    '''
+    global user_cards
+    global com_cards
+    global game_over
+    # print(logo)
+
+
 # This for loop will run twice with 'range(2)'
 # use append to have random_card function to output as a list
-for i in range(2):
-    user_cards.append(random_card())
-    com_cards.append(random_card())
-
+    for i in range(2):
+        user_cards.append(random_card())
+        com_cards.append(random_card())
 
 # The score will need to be rechecked with every new card drawn
 # and the checks in 'calculate_card_sum' need to be repeated 
 # until the game ends.
-while not game_over:
-    # Call 'calculate_score'. If the computer or the user has a blackjack (0)
-    # or if the user's score is over 21, then the game ends.
-    user_hand = calculate_card_sum(user_cards)
-    com_hand = calculate_card_sum(com_cards)
-    print(f"Your hand: {user_cards} current score: {user_hand}")
-    print(f"Dealers first card is: {com_cards[0]}")
+    while not game_over:
+        # Call 'calculate_score'. If the computer or the user has a blackjack
+        # (0) or if the user's score is over 21, then the game ends.
+        user_hand = calculate_card_sum(user_cards)
+        com_hand = calculate_card_sum(com_cards)
+        print(f"Your hand: {user_cards} current score: {user_hand}")
+        print(f"Dealers first card is: {com_cards[0]}")
 
-    if user_hand == 0 or com_hand == 0 or user_hand > 21:
-        game_over = True
-    else:
-        user_deal_again = input("Type 'y' to deal \
-again or 'n' to pass: ").lower()
-        if user_deal_again == "y":
-            user_cards.append(random_card())
-        else:
+        if user_hand == 0 or com_hand == 0 or user_hand > 21:
             game_over = True
+        else:
+            user_deal_again = input("Type 'y' to deal \
+again or 'n' to pass: ").lower()
+            if user_deal_again == "y":
+                user_cards.append(random_card())
+            else:
+                game_over = True
 
 
 # Once the user is done, it's time to let the computer play.
 # The computer should keep drawing cards as long as it has
 # a score less than 17.
-while com_hand != 0 and com_hand < 17:
-    com_cards.append(random_card())
-    com_score = calculate_card_sum(com_cards)
+    while com_hand != 0 and com_hand < 17:
+        com_cards.append(random_card())
+        com_hand = calculate_card_sum(com_cards)
 
+    print(f"Your final hand: {user_cards}, final score: {user_hand}")
+    print(f"Computer's final hand: {com_cards}, final score: {com_hand}")
+    print(compare_hands(user_hand, com_hand))
+
+
+# Hint 14: Ask the user if they want to restart the game. 
+# If they answer yes: clear the console and start a new game of blackjack 
+# and show the logo from art.py.
+while input("Do you want to play a game of Blackjack? \
+Type 'y' or 'n': ").lower() == "y":
+    play_game()
+    # clear()
 
 # --- BUGS ---- \\
 # user_cards += new_card did not work, so had to use append to put random_card 
