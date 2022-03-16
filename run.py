@@ -3,6 +3,8 @@
 # The Jack/Queen/King all count as 10
 # The Ace can count as 11 or 1
 # cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+# Will feedback to user - "Hello David"
+# print("Hello " + input("What is your name? "))
 
 
 import random
@@ -104,6 +106,7 @@ again or 'n' to pass: ").lower()
 while com_hand != 0 and com_hand < 17:
     com_cards.append(random_card())
     com_score = calculate_card_sum(com_cards)
+
 
 # --- BUGS ---- \\
 # user_cards += new_card did not work, so had to use append to put random_card 
