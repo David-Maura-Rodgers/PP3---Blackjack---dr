@@ -246,3 +246,4 @@ Type 'y' or 'n': \n").lower() == "y":
     # FIX: user_cards.append = [random_card()]
 # Hand were not being cleared after each round and kept being appended to
 # player and dealer hands
+# commit
