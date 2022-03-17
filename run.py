@@ -3,6 +3,7 @@
 
 
 import random
+# from game_visuals import card_art
 # import rules from gamerules
 # Need to use clear function (os system)
 # from art import logo
@@ -54,9 +55,9 @@ def place_bet():
             player_bet = START_BET
             dealer_bet = START_BET
             round_pot = player_bet + dealer_bet
-            print(f" Player bet this hand: €{player_bet}")
-            print(f" Dealer bet this hand: €{dealer_bet}")
-            print(f" Pot for this round is €{round_pot}")
+            print(f"   Player bet this hand: €{player_bet}")
+            print(f"   Dealer bet this hand: €{dealer_bet}")
+            print(f"   Pot for this round is €{round_pot}")
             print("\n")
             betting_over = True
         else:
@@ -65,25 +66,25 @@ def place_bet():
             player_bet = BET_20 + START_BET
             dealer_bet = player_bet
             round_pot = player_bet + dealer_bet
-            print(f" Player bet this hand: €{player_bet}")
-            print(f" Dealer bet this hand: €{dealer_bet}")
-            print(f" Pot for this round is €{round_pot}")
+            print(f"   Player bet this hand: €{player_bet}")
+            print(f"   Dealer bet this hand: €{dealer_bet}")
+            print(f"   Pot for this round is €{round_pot}")
             print("\n")
         if player_bet == 40:
             player_bet = BET_40 + START_BET
             dealer_bet = player_bet
             round_pot = player_bet + dealer_bet
-            print(f" Player bet this hand: €{player_bet}")
-            print(f" Dealer bet this hand: €{dealer_bet}")
-            print(f" Pot for this round is €{round_pot}")
+            print(f"   Player bet this hand: €{player_bet}")
+            print(f"   Dealer bet this hand: €{dealer_bet}")
+            print(f"   Pot for this round is €{round_pot}")
             print("\n")
         if player_bet == 80:
             player_bet = BET_80 + START_BET
             dealer_bet = player_bet
             round_pot = player_bet + dealer_bet
-            print(f" Player bet this hand: €{player_bet}")
-            print(f" Dealer bet this hand: €{dealer_bet}")
-            print(f" Pot for this round is €{round_pot}")
+            print(f"   Player bet this hand: €{player_bet}")
+            print(f"   Dealer bet this hand: €{dealer_bet}")
+            print(f"   Pot for this round is €{round_pot}")
             print("\n")
 
         return player_bet
@@ -194,7 +195,29 @@ def play_game():
     while not game_over:
         # Call 'calculate_score'. If the computer or the user has a blackjack
         # (0) or if the user's score is over 21, then the game ends.
+       
         user_hand = calculate_card_sum(user_cards)
+        # if user_cards == 2:
+        #     print(card_art[1])
+        # elif user_cards == 3:
+        #     print(card_art[2])
+        # elif user_cards == 4:
+        #     print(card_art[3])
+        # elif user_cards == 5:
+        #     print(card_art[4])
+        # elif user_cards == 6:
+        #     print(card_art[5])
+        # elif user_cards == 7:
+        #     print(card_art[6])
+        # elif user_cards == 8:
+        #     print(card_art[7])
+        # elif user_cards == 9:
+        #     print(card_art[8])
+        # elif user_cards == 10:
+        #     print(card_art[9])
+        # else:
+        #     print(card_art[0])
+
         com_hand = calculate_card_sum(com_cards)
         print(f"Your hand: {user_cards} current score: {user_hand}")
         print(f"Dealers first card is: {com_cards[0]}")
@@ -207,6 +230,7 @@ def play_game():
 again or 'n' to pass: ").lower()
             if user_deal_again == "y":
                 user_cards.append(random_card())
+                print(f"Dealer's hand: {com_cards} current score: {com_hand}")
             else:
                 game_over = True
 
@@ -226,9 +250,11 @@ again or 'n' to pass: ").lower()
 # Hint 14: Ask the user if they want to restart the game. 
 # If they answer yes: clear the console and start a new game of blackjack 
 # and show the logo from art.py.
-while input("Do you want to play a game of Blackjack? \
+while input("Do you want to start a new round of Blackjack? \
 Type 'y' or 'n': \n").lower() == "y":
     print("\n")
+    user_cards = []
+    com_cards = []
     place_bet()
     play_game()
     # clear()
