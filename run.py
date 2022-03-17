@@ -234,23 +234,15 @@ Type 'y' or 'n': \n").lower() == "y":
     print("\n")
     user_cards = []
     com_cards = []
-    place_bet()
     play_game()
+    place_bet()
 
 
 # --- BUGS ---- \\
-# user_cards += new_card did not work, so had to use append to put random_card 
+# user_cards += new_card did not work, so had to use append to put random_card
 # function to output as a list
     # new_card = random_card()
     # user_cards.append(new_card)
     # FIX: user_cards.append = [random_card()]
 # Hand were not being cleared after each round and kept being appended to
 # player and dealer hands
-
-
-# --- BUGS ---- \\
-# user_cards += new_card did not work, so had to use append to put random_card 
-# function to output as a list
-    # new_card = random_card()
-    # user_cards.append(new_card)
-    # FIX: user_cards.append = [random_card()]
