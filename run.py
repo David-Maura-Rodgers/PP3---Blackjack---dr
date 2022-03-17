@@ -93,9 +93,6 @@ def place_bet():
             print(f"   Pot for this round is €{round_pot}")
             print("\n")
 
-        return player_bet
-        return dealer_bet
-
 
 def calculate_card_sum(all_cards):
     '''
@@ -161,7 +158,7 @@ def play_game():
     '''
     FUNCTION: Will start the game:
     Deal random cards into player's and dealer's hands
-    Check for end game considtion and ask if user wants to play again
+    Check for end game condition and ask if user wants to play again
     '''
     user_cards = []
     com_cards = []
@@ -192,10 +189,7 @@ def play_game():
         dealer_pot = 1000
         round_pot = 0
 
-        if user_hand == com_hand:
-            player_pot = player_pot
-            dealer_pot = dealer_pot
-        elif com_hand == 0:
+        if com_hand == 0:
             player_pot = player_pot - round_pot
             dealer_pot = dealer_pot + round_pot
         elif user_hand == 0:
