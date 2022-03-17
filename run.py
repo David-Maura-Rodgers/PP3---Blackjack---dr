@@ -123,53 +123,39 @@ def compare_hands(user_hand, com_hand):
     '''
     FUNCTION: Compare values of user_hand and com_hand and determine the winner
     '''
-    global player_pot
-    global dealer_pot
     if user_hand == com_hand:
         return "This round is a draw . . ."
     elif com_hand == 0:
-        player_pot = player_pot - round_pot
-        dealer_pot = dealer_pot + round_pot
         print(f"Player Pot is now: €{player_pot}")
         print(f"Dealer Pot is now: €{dealer_pot}")
         print("\n")
         return "You lose - dealer has Blackjack!!"
     elif user_hand == 0:
-        player_pot = player_pot + round_pot
-        dealer_pot = dealer_pot - round_pot
         print(f"Player Pot is now: €{player_pot}")
         print(f"Dealer Pot is now: €{dealer_pot}")
         print("\n")
         return "You Win - with a Blackjack 😎"
     elif user_hand > 21:
-        player_pot = player_pot - round_pot
-        dealer_pot = dealer_pot + round_pot
         print(f"Player Pot is now: €{player_pot}")
         print(f"Dealer Pot is now: €{dealer_pot}")
         print("\n")
         return "You went over. You lose 😭"
     elif com_hand > 21:
-        player_pot = player_pot + round_pot
-        dealer_pot = dealer_pot - round_pot
         print(f"Player Pot is now: €{player_pot}")
         print(f"Dealer Pot is now: €{dealer_pot}")
         print("\n")
         return "Opponent went over. You win 😁"
     elif user_hand > com_hand:
-        player_pot = player_pot + round_pot
-        dealer_pot = dealer_pot - round_pot
         print(f"Player Pot is now: €{player_pot}")
         print(f"Dealer Pot is now: €{dealer_pot}")
         print("\n")
         return "You win 😃"
     else:
-        player_pot = player_pot - round_pot
-        dealer_pot = dealer_pot + round_pot
         print(f"Player Pot is now: €{player_pot}")
         print(f"Dealer Pot is now: €{dealer_pot}")
         print("\n")
         return "You lose 😤"
-
+    
 
 def play_game():
     '''
@@ -202,6 +188,32 @@ def play_game():
         print(f"Dealers first card is: {com_cards[0]}")
         print("\n")
 
+        player_pot = 1000
+        dealer_pot = 1000
+        round_pot = 0
+
+        if user_hand == com_hand:
+            player_pot = player_pot
+            dealer_pot = dealer_pot
+        elif com_hand == 0:
+            player_pot = player_pot - round_pot
+            dealer_pot = dealer_pot + round_pot
+        elif user_hand == 0:
+            player_pot = player_pot + round_pot
+            dealer_pot = dealer_pot - round_pot
+        elif user_hand > 21:
+            player_pot = player_pot - round_pot
+            dealer_pot = dealer_pot + round_pot
+        elif com_hand > 21:
+            player_pot = player_pot + round_pot
+            dealer_pot = dealer_pot - round_pot
+        elif user_hand > com_hand:
+            player_pot = player_pot + round_pot
+            dealer_pot = dealer_pot - round_pot
+        else:
+            player_pot = player_pot - round_pot
+            dealer_pot = dealer_pot + round_pot
+
         if user_hand == 0 or com_hand == 0 or user_hand > 21:
             game_over = True
         else:
@@ -224,11 +236,9 @@ again or 'n' to pass: ").lower()
     print(f"Your final hand: {user_cards}, final score: {user_hand}")
     print(f"Computer's final hand: {com_cards}, final score: {com_hand}")
     print(compare_hands(user_hand, com_hand))
-# Hint 14: Ask the user if they want to restart the game.
-# If they answer yes: clear the console and start a new game of blackjack
-# and show the logo from art.py.
 
 
+# Ask the user if they want to restart the game.
 while input("Do you want to start a new round of Blackjack? \
 Type 'y' or 'n': \n").lower() == "y":
     print("\n")
@@ -246,4 +256,4 @@ Type 'y' or 'n': \n").lower() == "y":
     # FIX: user_cards.append = [random_card()]
 # Hand were not being cleared after each round and kept being appended to
 # player and dealer hands
-# commit
+
