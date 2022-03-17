@@ -234,9 +234,9 @@ Type 'y' or 'n': \n").lower() == "y":
     print("\n")
     user_cards = []
     com_cards = []
-    play_game()
     place_bet()
-
+    play_game()
+    
 
 # --- BUGS ---- \\
 # user_cards += new_card did not work, so had to use append to put random_card
