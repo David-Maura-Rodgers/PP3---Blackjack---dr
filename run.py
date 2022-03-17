@@ -76,6 +76,7 @@ def place_bet():
             print(f"   Dealer bet this hand: €{dealer_bet}")
             print(f"   Pot for this round is €{round_pot}")
             print("\n")
+            betting_over = True
         if player_bet == 40:
             player_bet = BET_40 + START_BET
             dealer_bet = player_bet
@@ -84,6 +85,7 @@ def place_bet():
             print(f"   Dealer bet this hand: €{dealer_bet}")
             print(f"   Pot for this round is €{round_pot}")
             print("\n")
+            betting_over = True
         if player_bet == 80:
             player_bet = BET_80 + START_BET
             dealer_bet = player_bet
@@ -92,6 +94,7 @@ def place_bet():
             print(f"   Dealer bet this hand: €{dealer_bet}")
             print(f"   Pot for this round is €{round_pot}")
             print("\n")
+            betting_over = True
 
 
 def calculate_card_sum(all_cards):
