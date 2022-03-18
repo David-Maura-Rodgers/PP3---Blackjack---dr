@@ -56,7 +56,7 @@ def place_bet():
     global round_pot
     print("Betting always starts at €30\n")
     while not betting_over:
-        should_bet = input("Would you like to place bet? 'y' for yes,\
+        should_bet = input("Would you like to place a bet? 'y' for yes,\
 'n' for no: ").lower()
         if should_bet == "n":
             player_bet = START_BET
