@@ -134,22 +134,22 @@ def return_winner(p_hand, c_hand):
     if p_hand == c_hand:
         print("This round is a draw . . .\n")
     elif c_hand == 0:
-        winner = "com_hand"
+        winner = "Dealer"
         print("You lose - dealer has Blackjack 😱\n")
     elif p_hand == 0:
-        winner = "player_hand"
+        winner = "Player"
         print("You Win - with a Blackjack 😎\n")
     elif p_hand > 21:
-        winner = "com_hand"
+        winner = "Dealer"
         print("You went over. You lose 😭\n")
     elif c_hand > 21:
-        winner = "player_hand"
+        winner = "Player"
         print("Opponent went over. You win 😁\n")
     elif p_hand > c_hand:
-        winner = "player_hand"
+        winner = "Player"
         print("You win 😃") 
     else:
-        winner = "com_hand"
+        winner = "Dealer"
         print("You lose 😤\n")
     
     return winner
