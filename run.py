@@ -30,8 +30,8 @@ round_over = False
 
 # Calculate: add or subtract these variables after each bet
 round_pot = 0
-player_pot = 1000
-dealer_pot = 1000
+# player_pot = 1000
+# dealer_pot = 1000
 
 # Check end game condition
 is_game_over = False
@@ -56,7 +56,7 @@ def place_bet():
     betting_over = False
     player_bet = 0
     dealer_bet = 0
-    round_pot = 0
+    global round_pot
     print("Betting always starts at €30\n")
     while not betting_over:
         should_bet = input("Would you like to place bet? 'y' for yes,\
@@ -64,36 +64,40 @@ def place_bet():
         if should_bet == "n":
             player_bet = START_BET
             dealer_bet = START_BET
-            round_pot = player_bet + dealer_bet
+            round_pot += player_bet + dealer_bet
             print(f"   Player bet this hand: €{player_bet}")
             print(f"   Dealer bet this hand: €{dealer_bet}")
             print(f"   Pot for this round is €{round_pot}\n")
+            print("\n")
             betting_over = True
         else:
             player_bet = int(input("Please enter bet: 20, 40 or 80: "))
         if player_bet == 20:
             player_bet = BET_20 + START_BET
             dealer_bet = player_bet
-            round_pot = player_bet + dealer_bet
+            round_pot += player_bet + dealer_bet
             print(f"   Player bet this hand: €{player_bet}")
             print(f"   Dealer bet this hand: €{dealer_bet}")
             print(f"   Pot for this round is €{round_pot}\n")
+            print("\n")
             betting_over = True
         if player_bet == 40:
             player_bet = BET_40 + START_BET
             dealer_bet = player_bet
-            round_pot = player_bet + dealer_bet
+            round_pot += player_bet + dealer_bet
             print(f"   Player bet this hand: €{player_bet}")
             print(f"   Dealer bet this hand: €{dealer_bet}")
             print(f"   Pot for this round is €{round_pot}\n")
+            print("\n")
             betting_over = True
         if player_bet == 80:
             player_bet = BET_80 + START_BET
             dealer_bet = player_bet
-            round_pot = player_bet + dealer_bet
+            round_pot += player_bet + dealer_bet
             print(f"   Player bet this hand: €{player_bet}")
             print(f"   Dealer bet this hand: €{dealer_bet}")
             print(f"   Pot for this round is €{round_pot}\n")
+            print("\n")
             betting_over = True
 
 
@@ -120,32 +124,32 @@ def calculate_card_sum(all_cards):
 # If the player_hand is over 21, then the player loses (vice versa)
 # If none of the above, then the player with the highest hand wins
 # def compare_hands(player_hand, com_hand):
-def return_winner(player_hand, com_hand):
+def return_winner(p_hand, c_hand):
     '''
     FUNCTION: Compare values of player_hand and com_hand and determine 
     the winner
     '''
     winner = ""
-    if player_hand == com_hand:
-        return "This round is a draw . . ."
-    elif com_hand == 0:
-        winner = com_hand
-        return "You lose - dealer has Blackjack 😱"
-    elif player_hand == 0:
+    if p_hand == c_hand:
+        print("This round is a draw . . .\n")
+    elif c_hand == 0:
+        winner = "com_hand"
+        print("You lose - dealer has Blackjack 😱\n")
+    elif p_hand == 0:
         winner = "player_hand"
-        return "You Win - with a Blackjack 😎"
-    elif player_hand > 21:
-        winner = com_hand
-        return "You went over. You lose 😭"
-    elif com_hand > 21:
-        winner = player_hand
-        return "Opponent went over. You win 😁"
-    elif player_hand > com_hand:
+        print("You Win - with a Blackjack 😎\n")
+    elif p_hand > 21:
+        winner = "com_hand"
+        print("You went over. You lose 😭\n")
+    elif c_hand > 21:
         winner = "player_hand"
-        return "You win 😃"
+        print("Opponent went over. You win 😁\n")
+    elif p_hand > c_hand:
+        winner = "player_hand"
+        print("You win 😃") 
     else:
-        winner = com_hand
-        return "You lose 😤"
+        winner = "com_hand"
+        print("You lose 😤\n")
     
     return winner
 
@@ -191,24 +195,7 @@ again or 'n' to pass: ").lower()
             else:
                 round_over = True
 
-        player_pot = 1000
-        dealer_pot = 1000
-        round_pot = 0
 
-        the_winner == return_winner(player_hand, com_hand)
-
-        if the_winner == "player_hand":
-            player_pot = player_pot + round_pot
-            dealer_pot = dealer_pot - round_pot
-        
-        if the_winner == "com_hand":
-            player_pot = player_pot - round_pot
-            dealer_pot = dealer_pot + round_pot
-        
-        print(f"Player Pot is now: €{player_pot}")
-        print(f"Dealer Pot is now: €{dealer_pot}")
-
-        
 # Once the player is done, it's time to let the computer play.
 # The computer should keep drawing cards as long as it has
 # a score less than 17.
@@ -217,13 +204,31 @@ again or 'n' to pass: ").lower()
         com_hand = calculate_card_sum(com_cards)
 
     print(f"Your final hand: {player_cards}, final score: {player_hand}")
-    print(f"Computer's final hand: {com_cards}, final score: {com_hand}")
+    print(f"Computer's final hand: {com_cards}, final score: {com_hand}\n")
     print(return_winner(player_hand, com_hand))
+
+    player_pot = 1000
+    dealer_pot = 1000
+    # round_pot = 0
+
+    the_winner = return_winner(player_hand, com_hand)
+    print(f"THE WINNER: {the_winner}")
+
+    if the_winner == "player_hand":
+        player_pot = player_pot + round_pot
+        dealer_pot = dealer_pot - round_pot
+    
+    if the_winner == "com_hand":
+        player_pot = player_pot - round_pot
+        dealer_pot = dealer_pot + round_pot
+    
+    print(f"Player Pot is now: €{player_pot}")
+    print(f"Dealer Pot is now: €{dealer_pot}\n")
 
 
 # Ask the player if they want to restart the game.
 while input("Do you want to start a new round of Blackjack? \
-Type 'y' or 'n': \n").lower() == "y":
+Type 'y' or 'n': ").lower() == "y":
     print("\n")
     player_cards = []
     com_cards = []

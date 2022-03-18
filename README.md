@@ -8,19 +8,21 @@ There are no jokers in the deck
 The Jack/Queen/King all count as 10.
 The Ace can count as 11 or 1
 
+If the computer has a blackjack (0), then the player loses and vice versa
+If the player_hand is over 21, then the player loses and vice versa
+If none of the above, then the player with the highest hand wins
 
 ![home-page](https://user-images.githubusercontent.com/91907661/153290742-48f5e3aa-489c-417a-9db4-06869f676cc4.png)
 
-![quiz-page](https://user-images.githubusercontent.com/91907661/153291017-5b302647-6f0c-47a5-bab5-9aa5b179b20e.png)
-
 
 ## How to play
+The game begins by asking you if you would like to play a game of Blackjack, if yes, the game begins.
 
-Below is a list of features that I have on this site which I will detail individually. There is a welcome page with a Start Quiz Button that will take the user to the main quiz page. On this quiz page, there is a quiz area which contains a question display area and four radio buttons that the user can select from to register an answer. And below this, but still within the same containing div, the user will receive feedback on their answers. 
+The madatory bet is €30 and you can bet on top of this if you wish.
 
-There is another div below which contains dynamic icons in response to user input. And finally two buttons: Next Question and Restart Quiz along with a score tracker at the bottom. 
+Random cards are drawn and and the total value of your cards and the dealer's first card is displayed.
 
-I have also added a favicon for the site.
+The aim of the game is to get to as close to 21 as possible, closer than the dealer, and without going over the value of 21
 
 ### Each Feature Explained
 
