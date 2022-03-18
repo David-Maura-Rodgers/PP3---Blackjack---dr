@@ -1,6 +1,10 @@
+
+
 # Blackjack Python Game
 
-My Blackjack game runs through an Heroku Terminal. The game will take in user input and deal cards to both the player and the dealer. 
+Here is the live version of my project - https://blackjack-david-r.herokuapp.com/
+
+My Blackjack game runs through a Heroku Terminal. The game will take in user input and deal cards to both the player and the dealer. 
 
 The rules and conditions for the game are outlined as below:
 Cards are drawn from a list data model - [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
@@ -19,13 +23,15 @@ If none of the above, then the player with the highest hand wins
 The game begins by asking you if you would like to play a game of Blackjack, if yes, the game begins.
 
 Both the player and the dealer start the game with a pot of €1000 each
-The madatory bet is €30 and you can bet on top of this if you wish.
 
-Random cards are drawn and and the total value of your cards and the dealer's first card is displayed.
+The mandatory bet is €30 and you can bet on top of this if you wish.
+
+Random cards are drawn and the total value of your cards and the dealer's first card is displayed.
 
 The aim of the game is to get to as close to 21 as possible, closer than the dealer, and without going over the value of 21.
 
-You can chose to draw more cards or stay with the hand you have currently. The dealer then continues to draw cards for themselves providing the total value of their hand is not more that 17.
+You can choose to draw more cards or stay with the hand you have currently. The dealer then continues to draw cards for themselves providing 
+the total value of their hand is not more than 17.
 
 Game concepts and behaviours are explained in more detail in the features section below.
 
@@ -42,7 +48,7 @@ Game concepts and behaviours are explained in more detail in the features sectio
 - __Place a bet__
   - All players have a stating pot of €1000
   - The mandatory bet is €30
-  - You can either chose to stay at €30 or increase this amount by either
+  - You can either choose to stay at €30 or increase this amount by either
   €20, €40, €80.
   - The dealer will always match the bet that you make
   - Both the player bet and dealer bet are then added to the round pot
@@ -55,10 +61,10 @@ Game concepts and behaviours are explained in more detail in the features sectio
 - __Feedback: Hit or Stick__
   - After a bet has been placed, the dealer deals the cards to both player and the dealer
   - The player's first 2 cards are revealed and the the dealers first card is revealed
-  - The player can either chose to draw another random card or stick with
+  - The player can either choose to draw another random card or stick with
   the hand(value) they currently have
-  - The dealer then continues to draw cards for themselves providing the total value of their hand is not more that 17.
-  - Once the dealers hand is above 17, the total values of each hand are revealed
+  - The dealer then continues to draw cards for themselves providing the total value of their hand is not more than 17.
+  - Once the dealer's hand is above 17, the total values of each hand are revealed
 
 
 - __Display Winner and remaining Player and Dealer Pots__
@@ -86,40 +92,60 @@ Game concepts and behaviours are explained in more detail in the features sectio
 
 
 - __Future Features__
-  - The end game is triggered once either the player pot or dealer pot reaches 0 or a minus value
+  - Have player choose from a range of starting pots
+  - Have visuals added with corresponding card images for the cards drawn by the player
 
 
 ### Data Model and Methods Used
 I decided to use lists that generated random values for the card values in the game. This was done using random and append methods.
 
-I used quite a few functions to execute the game at each step, several while and for loops were used to output data and check if certain processed were complete in order to move ahead to the next step of the game.
+I used quite a few functions to execute the game at each step, several while and for loops were used to output data and check if certain 
+processes were complete in order to move ahead to the next step of the game.
 
-Several if statments were throught the program to verify inputted data and store this data correctly in addition to esnureing the correct information is disaplyed to the end user.
+Several if statements were used throughout the program to verify inputted data and store this data correctly in addition to ensuring the correct 
+information is displayed to the end user.
 
 
 ### Testing and Unfixed Bugs
 
+- __Testing__
+  - Manual testing in local repository
+  - Testing output and appearance in Heroku terminal
+  - Passed through PEP8 Linter with no issues - http://pep8online.com/checkresult
 
-## Deployment
-- The site was deployed to GitHub pages. The steps to deploy are as follows: 
-  - In the GitHub repository, navigate to the Settings tab 
-  - From the source section drop-down menu, select the Master Branch
-  - Once the master branch has been selected, the page will be automatically refreshed with a detailed ribbon display to indicate the successful deployment. 
 
-The live link can be found here - https://david-maura-rodgers.github.io/JavaScript_Project_2/ 
+- __Solved Bugs__
+  - Tried adding random cards into list using += which didn't work, so used append function instead
+  - Hand were not being cleared after each round and kept being appended to
+player and dealer hands every time. So I cleared them each time in a while loop as shown below:
+while input("Do you want to start a new round of Blackjack? \
+Type 'y' or 'n': ").lower() == "y":
+    print("\n")
+    player_cards = []
+    com_cards = []
+    place_bet()
+    play_game()
+- Also had a lot of trouble resetting the round_pot value after each round, after a mentor session, we figured out that I had been redefining 
+this variable too many times in the application. Defining these variables once in the global scope of application fixed this issue
+
+- __Remaining Bugs__
+  - Dealer's first card is displayed every time a cards is drawn by the player, it does not harm the functionality of the game in any way, 
+it would just be tidier if it only displayed once at the beginning of every round
+  - Can't get application to tell user to enter either 20, 40 or 80 only if user types any other value
+
+
+### Deployment
+This project was deployed using Code Institute's mock terminal for Heroku
+- The steps to deploy are as follows: 
+  - Fork or clone this repository 
+  - Create a new Heroku app
+  - Set the buildpack to Python and NodeJS in that order
+  - Link Heroku app to this repository
+  - Click on deploy
 
 
 ### Credits for all Content 
-- __HTML Code__
-  - For Start Button on index page: https://stackoverflow.com/questions/2906582/how-to-create-an-html-button-that-acts-like-a-link
-  - Icons come from: https://fontawesome.com/
-  - Favicon comes from : https://favicon.io/
-
-- __CSS Code__
-  - None
-
-- __JavaScript Code__
-  - I looked online at W3 Schools and MDN to get a better understanding of JavaScript concepts when writing the script.
-  - I had a look at Stack Overflow on numerous occasions, and though I did try several snippets of code in my project, I never ended up using any of it as it never worked as I needed it to for what I was doing
-  - I did however, receive a lot of help in the mentor sessions and guidance on similar projects to get started, along with quite a few online tutor sessions to help me through the logic of what I was trying to achieve with my script. My mentor decided that I should look at https://github.com/Jonathanrange/Rock-Metal-Quiz. The ideas in this project helped me get started in building my own project.
-
+- https://www.wikihow.com/Play-Blackjack
+- https://stackoverflow.com/questions/73663/how-to-terminate-a-script
+- https://stackoverflow.com/questions/2084508/clear-terminal-in-python
+- Had several mentor and tutor sessions to work through ideas and bugs in code in search of solutions

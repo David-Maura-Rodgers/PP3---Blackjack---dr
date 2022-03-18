@@ -3,13 +3,14 @@ import random
 import sys
 import os
 
-# Hold random cards and value of each hand
+# Hold random cards and the value of each hand
 player_cards = []
 com_cards = []
 player_hand = 0
 com_hand = 0
 
-# Check bets enetered and betting and round over conditions
+# Value of bets entered
+# Betting and round over conditions
 START_BET = 30
 BET_20 = 20
 BET_40 = 40
@@ -19,7 +20,8 @@ dealer_bet = 0
 betting_over = False
 round_over = False
 
-# Calculate: add or subtract these variables after each bet
+# Calculate: add or subtract these variables after each bet to trigger
+# end game conditions
 round_pot = 0
 player_pot = 1000
 dealer_pot = 1000
@@ -100,8 +102,13 @@ def calculate_card_sum(all_cards):
     Take list of both hands (player and com)
     and return the sum of those cards
     '''
+    # Check for a blackjack (a hand with only 2 cards: ace + 10)
+    # and return 0 instead of the actual score
+    # 0 represents a blackjack
     if sum(all_cards) == 21 and len(all_cards) == 2:
         return 0
+    # Check for an 11 (ace). If the score is already over 21,
+    # remove the 11 and replace it with a 1.
     if 11 in all_cards and sum(all_cards) > 21:
         all_cards.remove(11)
         all_cards.append(1)
@@ -139,9 +146,10 @@ def return_winner(p_hand, c_hand):
 
 def play_game():
     '''
-    FUNCTION: Will start the game:
-    Deal random cards into player's and dealer's hands
-    Check for end game condition and ask if player wants to play again
+    FUNCTION:
+    Will start the game - Deal random cards into player's and dealer's hands
+    Check conditions to find the winner of the round
+    Check for end game condition determine the winner
     '''
     player_cards = []
     com_cards = []
@@ -219,6 +227,7 @@ again or 'n' to pass: ").lower()
 
 
 # Ask the player if they want to play another round.
+# Will end the round and game no
 while input("Do you want to start a new round of Blackjack? \
 Type 'y' or 'n': ").lower() == "y":
     print("\n")
@@ -226,16 +235,3 @@ Type 'y' or 'n': ").lower() == "y":
     com_cards = []
     place_bet()
     play_game()
-
-
-# --- BUGS ---- \\
-# player_cards += new_card did not work, so had to use append to
-# put random_card function to output as a list
-    # new_card = random_card()
-    # player_cards.append(new_card)
-    # FIX: player_cards.append = [random_card()]
-# Hand were not being cleared after each round and kept being appended to
-# player and dealer hands
-# Round pot not being reset to 0 each round
-# https://stackoverflow.com/questions/73663/how-to-terminate-a-script
-# https://stackoverflow.com/questions/2084508/clear-terminal-in-python
