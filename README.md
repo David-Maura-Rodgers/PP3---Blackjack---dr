@@ -9,14 +9,12 @@ The Jack/Queen/King all count as 10.
 The Ace can count as 11 or 1
 
 
-The first question in the question array will be displayed on this page. The questions will change dynamically when the user has selected a radio button that corresponds with the answer they wish to choose. They will then click on the Next Question button to get the next question in the array. This process repeats until they reach the end of the quiz. They can then click the Restart Button to try the quiz again.
-
 ![home-page](https://user-images.githubusercontent.com/91907661/153290742-48f5e3aa-489c-417a-9db4-06869f676cc4.png)
 
 ![quiz-page](https://user-images.githubusercontent.com/91907661/153291017-5b302647-6f0c-47a5-bab5-9aa5b179b20e.png)
 
 
-## Features 
+## How to play
 
 Below is a list of features that I have on this site which I will detail individually. There is a welcome page with a Start Quiz Button that will take the user to the main quiz page. On this quiz page, there is a quiz area which contains a question display area and four radio buttons that the user can select from to register an answer. And below this, but still within the same containing div, the user will receive feedback on their answers. 
 
