@@ -16,7 +16,7 @@ If the computer has a blackjack (0), then the player loses and vice versa
 If the player_hand is over 21, then the player loses and vice versa
 If none of the above, then the player with the highest hand wins
 
-![home-page](https://user-images.githubusercontent.com/91907661/153290742-48f5e3aa-489c-417a-9db4-06869f676cc4.png)
+![Home](https://user-images.githubusercontent.com/91907661/159094522-10c92534-568c-4398-9542-15e0346a1be1.png)
 
 
 ## How to play
@@ -42,7 +42,7 @@ Game concepts and behaviours are explained in more detail in the features sectio
 
   - You must enter 'y' on keyboard to begin game or 'n' to close application
 
-![question-display](https://user-images.githubusercontent.com/91907661/153291336-e0cd84b7-e701-4b47-8d9b-89fe8de6a1b7.png)
+![Place bet](https://user-images.githubusercontent.com/91907661/159094705-b0995e41-f613-4bb4-b354-601210d196e9.png)
 
 
 - __Place a bet__
@@ -55,7 +55,7 @@ Game concepts and behaviours are explained in more detail in the features sectio
   - The value of the round pot is either added to or deducted from 
   value of the player and dealer pots, depending on who wins that round
 
-![radio-buttons](https://user-images.githubusercontent.com/91907661/153291667-c2943dac-587a-4988-b819-f9f7ee53a9f1.png)
+![Choose bet amount](https://user-images.githubusercontent.com/91907661/159094900-deee0671-be38-49e2-8549-b6d64ef66aec.png)
 
 
 - __Feedback: Hit or Stick__
@@ -73,7 +73,9 @@ Game concepts and behaviours are explained in more detail in the features sectio
   values either increment or decrement or stay the same depending on 
   the result of the wound
 
-![icons](https://user-images.githubusercontent.com/91907661/153291941-cf3e1321-7764-451b-b716-f9096a6b6485.png)
+![Round Display](https://user-images.githubusercontent.com/91907661/159095160-b84c8283-e455-4342-829e-bfb4b591bbf6.png)
+
+![display round winner](https://user-images.githubusercontent.com/91907661/159095267-0be6a9c6-0dbe-46f7-9736-57b180b1564c.png)
 
 
 - __Play Another Round__
@@ -88,7 +90,7 @@ Game concepts and behaviours are explained in more detail in the features sectio
 - __End Game__
   - The end game is triggered once either the player pot or dealer pot reaches 0 or a minus value
 
-![next-hide](https://user-images.githubusercontent.com/91907661/153293260-7de11d90-c73f-4de2-be46-7683e6255505.png)
+![display round winner](https://user-images.githubusercontent.com/91907661/159095438-b42de041-698b-4e4d-bac2-e620fa181881.png)
 
 
 - __Future Features__
