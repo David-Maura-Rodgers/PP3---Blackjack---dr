@@ -134,22 +134,22 @@ def return_winner(p_hand, c_hand):
     if p_hand == c_hand:
         print("This round is a draw . . .\n")
     elif c_hand == 0:
-        winner = "com_hand"
+        winner = "Dealer"
         print("You lose - dealer has Blackjack 😱\n")
     elif p_hand == 0:
-        winner = "player_hand"
+        winner = "Player"
         print("You Win - with a Blackjack 😎\n")
     elif p_hand > 21:
-        winner = "com_hand"
+        winner = "Dealer"
         print("You went over. You lose 😭\n")
     elif c_hand > 21:
-        winner = "player_hand"
+        winner = "Player"
         print("Opponent went over. You win 😁\n")
     elif p_hand > c_hand:
-        winner = "player_hand"
+        winner = "Player"
         print("You win 😃") 
     else:
-        winner = "com_hand"
+        winner = "Dealer"
         print("You lose 😤\n")
     
     return winner
@@ -206,7 +206,7 @@ again or 'n' to pass: ").lower()
 
     print(f"Your final hand: {player_cards}, final score: {player_hand}")
     print(f"Computer's final hand: {com_cards}, final score: {com_hand}\n")
-    print(return_winner(player_hand, com_hand))
+    # print(return_winner(player_hand, com_hand))
 
     player_pot = 1000
     dealer_pot = 1000
@@ -215,11 +215,11 @@ again or 'n' to pass: ").lower()
     the_winner = return_winner(player_hand, com_hand)
     print(f"THE WINNER: {the_winner}")
 
-    if the_winner == "player_hand":
+    if the_winner == "Player":
         player_pot = player_pot + round_pot
         dealer_pot = dealer_pot - round_pot
     
-    if the_winner == "com_hand":
+    if the_winner == "Dealer":
         player_pot = player_pot - round_pot
         dealer_pot = dealer_pot + round_pot
     
