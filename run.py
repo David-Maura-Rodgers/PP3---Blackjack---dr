@@ -1,6 +1,4 @@
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
-# TO RUN CODE: python3 run.py
-
+# TO RUN CODE: python3 run2.py
 '''
 The deck is unlimited in size.
 There are no jokers.
@@ -11,15 +9,16 @@ Use the following list as the deck of cards:
 The cards in the list have equal probability of being drawn.
 Cards are not removed from the deck as they are drawn.
 '''
-
+# from replit import clear
 import random
 
-# GLOBAL VARIABLES
+# Hold random cards and value of each hand
 player_cards = []
 com_cards = []
 player_hand = 0
 com_hand = 0
 
+# Check bets enetered and betting and round over conditions
 START_BET = 30
 BET_20 = 20
 BET_40 = 40
@@ -28,11 +27,14 @@ player_bet = 0
 dealer_bet = 0
 betting_over = False
 round_over = False
-is_game_over = False
 
+# Calculate: add or subtract these variables after each bet
 round_pot = 0
 player_pot = 1000
 dealer_pot = 1000
+
+# Check end game condition
+is_game_over = False
 
 
 def random_card():
@@ -55,7 +57,7 @@ def place_bet():
     player_bet = 0
     dealer_bet = 0
     round_pot = 0
-    print("Betting always starts at €30")
+    print("Betting always starts at €30\n")
     while not betting_over:
         should_bet = input("Would you like to place bet? 'y' for yes,\
 'n' for no: ").lower()
@@ -65,8 +67,7 @@ def place_bet():
             round_pot = player_bet + dealer_bet
             print(f"   Player bet this hand: €{player_bet}")
             print(f"   Dealer bet this hand: €{dealer_bet}")
-            print(f"   Pot for this round is €{round_pot}")
-            print("\n")
+            print(f"   Pot for this round is €{round_pot}\n")
             betting_over = True
         else:
             player_bet = int(input("Please enter bet: 20, 40 or 80: "))
@@ -76,8 +77,7 @@ def place_bet():
             round_pot = player_bet + dealer_bet
             print(f"   Player bet this hand: €{player_bet}")
             print(f"   Dealer bet this hand: €{dealer_bet}")
-            print(f"   Pot for this round is €{round_pot}")
-            print("\n")
+            print(f"   Pot for this round is €{round_pot}\n")
             betting_over = True
         if player_bet == 40:
             player_bet = BET_40 + START_BET
@@ -85,8 +85,7 @@ def place_bet():
             round_pot = player_bet + dealer_bet
             print(f"   Player bet this hand: €{player_bet}")
             print(f"   Dealer bet this hand: €{dealer_bet}")
-            print(f"   Pot for this round is €{round_pot}")
-            print("\n")
+            print(f"   Pot for this round is €{round_pot}\n")
             betting_over = True
         if player_bet == 80:
             player_bet = BET_80 + START_BET
@@ -94,8 +93,7 @@ def place_bet():
             round_pot = player_bet + dealer_bet
             print(f"   Player bet this hand: €{player_bet}")
             print(f"   Dealer bet this hand: €{dealer_bet}")
-            print(f"   Pot for this round is €{round_pot}")
-            print("\n")
+            print(f"   Pot for this round is €{round_pot}\n")
             betting_over = True
 
 
@@ -103,7 +101,7 @@ def calculate_card_sum(all_cards):
     '''
     FUNCTION: check for a Blackjack:
     a hand with only 2 cards: ace + 10, and return 0
-    FUNCTION: Take list of both hands (player and com)
+    Take list of both hands (player and com)
     and return the sum of those cards
     '''
     if sum(all_cards) == 21 and len(all_cards) == 2:
@@ -116,49 +114,41 @@ def calculate_card_sum(all_cards):
     return sum(all_cards)
 
 
-# pass in the player_hand and com_hand. If the computer and player
+# Pass in the player_hand and com_hand. If the computer and player
 # both have the same score, then it's a draw.
 # If the computer has a blackjack (0), then the player loses. (vice versa)
 # If the player_hand is over 21, then the player loses (vice versa)
 # If none of the above, then the player with the highest hand wins
-def compare_hands(player_hand, com_hand):
+# def compare_hands(player_hand, com_hand):
+def return_winner(player_hand, com_hand):
     '''
     FUNCTION: Compare values of player_hand and com_hand and determine 
     the winner
     '''
+    winner = ""
     if player_hand == com_hand:
         return "This round is a draw . . ."
     elif com_hand == 0:
-        print(f"Player Pot is now: €{player_pot}")
-        print(f"Dealer Pot is now: €{dealer_pot}")
-        print("\n")
-        return "You lose - dealer has Blackjack!!"
+        winner = com_hand
+        return "You lose - dealer has Blackjack 😱"
     elif player_hand == 0:
-        print(f"Player Pot is now: €{player_pot}")
-        print(f"Dealer Pot is now: €{dealer_pot}")
-        print("\n")
+        winner = "player_hand"
         return "You Win - with a Blackjack 😎"
     elif player_hand > 21:
-        print(f"Player Pot is now: €{player_pot}")
-        print(f"Dealer Pot is now: €{dealer_pot}")
-        print("\n")
+        winner = com_hand
         return "You went over. You lose 😭"
-    elif player_hand > 21:
-        print(f"Player Pot is now: €{player_pot}")
-        print(f"Dealer Pot is now: €{dealer_pot}")
-        print("\n")
+    elif com_hand > 21:
+        winner = player_hand
         return "Opponent went over. You win 😁"
     elif player_hand > com_hand:
-        print(f"Player Pot is now: €{player_pot}")
-        print(f"Dealer Pot is now: €{dealer_pot}")
-        print("\n")
+        winner = "player_hand"
         return "You win 😃"
     else:
-        print(f"Player Pot is now: €{player_pot}")
-        print(f"Dealer Pot is now: €{dealer_pot}")
-        print("\n")
+        winner = com_hand
         return "You lose 😤"
     
+    return winner
+
 
 def play_game():
     '''
@@ -170,14 +160,13 @@ def play_game():
     com_cards = []
     player_hand = 0
     com_hand = 0
+    the_winner = ""
     round_over = False
     # This for loop will run twice with 'range(2)'
     # use append to have 'random_card' FUNCTION to output as a list
     for card in range(2):
         player_cards.append(random_card())
-        # print(card_art[player_hand])
-        player_cards.append(random_card())
-        # print(card_art[com_hand])
+        com_cards.append(random_card())
 
     # The score will need to be rechecked with every new card drawn
     # and the checks in 'calculate_card_sum' need to be repeated
@@ -188,32 +177,8 @@ def play_game():
         # ends.
         player_hand = calculate_card_sum(player_cards)
         com_hand = calculate_card_sum(com_cards)
-        print(f"Your hand: {player_cards} current score: {player_hand}")
-        print(f"Dealers first card is: {com_cards[0]}")
-        print("\n")
-
-        player_pot = 1000
-        dealer_pot = 1000
-        round_pot = 0
-
-        if com_hand == 0:
-            player_pot = player_pot - round_pot
-            dealer_pot = dealer_pot + round_pot
-        elif player_hand == 0:
-            player_pot = player_pot + round_pot
-            dealer_pot = dealer_pot - round_pot
-        elif player_hand > 21:
-            player_pot = player_pot - round_pot
-            dealer_pot = dealer_pot + round_pot
-        elif com_hand > 21:
-            player_pot = player_pot + round_pot
-            dealer_pot = dealer_pot - round_pot
-        elif player_hand > com_hand:
-            player_pot = player_pot + round_pot
-            dealer_pot = dealer_pot - round_pot
-        else:
-            player_pot = player_pot - round_pot
-            dealer_pot = dealer_pot + round_pot
+        print(f"Dealers first card is: {com_cards[0]}\n")
+        print(f"Your hand: {player_cards} current score: {player_hand}\n")       
 
         if player_hand == 0 or com_hand == 0 or player_hand > 21:
             round_over = True
@@ -226,7 +191,24 @@ again or 'n' to pass: ").lower()
             else:
                 round_over = True
 
+        player_pot = 1000
+        dealer_pot = 1000
+        round_pot = 0
 
+        the_winner == return_winner(player_hand, com_hand)
+
+        if the_winner == "player_hand":
+            player_pot = player_pot + round_pot
+            dealer_pot = dealer_pot - round_pot
+        
+        if the_winner == "com_hand":
+            player_pot = player_pot - round_pot
+            dealer_pot = dealer_pot + round_pot
+        
+        print(f"Player Pot is now: €{player_pot}")
+        print(f"Dealer Pot is now: €{dealer_pot}")
+
+        
 # Once the player is done, it's time to let the computer play.
 # The computer should keep drawing cards as long as it has
 # a score less than 17.
@@ -236,7 +218,7 @@ again or 'n' to pass: ").lower()
 
     print(f"Your final hand: {player_cards}, final score: {player_hand}")
     print(f"Computer's final hand: {com_cards}, final score: {com_hand}")
-    print(compare_hands(player_hand, com_hand))
+    print(return_winner(player_hand, com_hand))
 
 
 # Ask the player if they want to restart the game.
@@ -247,7 +229,7 @@ Type 'y' or 'n': \n").lower() == "y":
     com_cards = []
     place_bet()
     play_game()
-    
+
 
 # --- BUGS ---- \\
 # player_cards += new_card did not work, so had to use append to 
