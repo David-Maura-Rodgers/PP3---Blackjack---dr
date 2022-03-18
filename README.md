@@ -84,13 +84,11 @@ Game concepts and behaviours are explained in more detail in the features sectio
   to repeat the process
   - The values of the player pot and dealer pots are kept on from the previous round
 
-![next-alert](https://user-images.githubusercontent.com/91907661/153292940-ff36ffe3-18ee-448b-b380-085ada9853ac.png)
-
 
 - __End Game__
   - The end game is triggered once either the player pot or dealer pot reaches 0 or a minus value
 
-![display round winner](https://user-images.githubusercontent.com/91907661/159095438-b42de041-698b-4e4d-bac2-e620fa181881.png)
+![Display game winner](https://user-images.githubusercontent.com/91907661/159095814-5e100df7-d79b-47c5-a694-b7033dfcdaa9.png)
 
 
 - __Future Features__
