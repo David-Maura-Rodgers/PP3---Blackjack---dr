@@ -71,7 +71,7 @@ def place_bet():
             print("\n")
             betting_over = True
         else:
-            print("\n")
+            print("/n")
             player_bet = int(input("Please enter bet: 20, 40 or 80: "))
         if player_bet == 20:
             player_bet = BET_20 + START_BET
@@ -134,22 +134,22 @@ def return_winner(p_hand, c_hand):
     if p_hand == c_hand:
         print("This round is a draw . . .\n")
     elif c_hand == 0:
-        winner = "Dealer"
+        winner = "com_hand"
         print("You lose - dealer has Blackjack 😱\n")
     elif p_hand == 0:
-        winner = "Player"
+        winner = "player_hand"
         print("You Win - with a Blackjack 😎\n")
     elif p_hand > 21:
-        winner = "Dealer"
+        winner = "com_hand"
         print("You went over. You lose 😭\n")
     elif c_hand > 21:
-        winner = "Player"
+        winner = "player_hand"
         print("Opponent went over. You win 😁\n")
     elif p_hand > c_hand:
-        winner = "Player"
+        winner = "player_hand"
         print("You win 😃") 
     else:
-        winner = "Dealer"
+        winner = "com_hand"
         print("You lose 😤\n")
     
     return winner
@@ -206,7 +206,7 @@ again or 'n' to pass: ").lower()
 
     print(f"Your final hand: {player_cards}, final score: {player_hand}")
     print(f"Computer's final hand: {com_cards}, final score: {com_hand}\n")
-    # print(return_winner(player_hand, com_hand))
+    print(return_winner(player_hand, com_hand))
 
     player_pot = 1000
     dealer_pot = 1000
