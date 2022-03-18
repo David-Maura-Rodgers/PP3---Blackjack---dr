@@ -71,6 +71,7 @@ def place_bet():
             print("\n")
             betting_over = True
         else:
+            print("\n")
             player_bet = int(input("Please enter bet: 20, 40 or 80: "))
         if player_bet == 20:
             player_bet = BET_20 + START_BET
@@ -205,7 +206,7 @@ again or 'n' to pass: ").lower()
 
     print(f"Your final hand: {player_cards}, final score: {player_hand}")
     print(f"Computer's final hand: {com_cards}, final score: {com_hand}\n")
-    print(return_winner(player_hand, com_hand))
+    # print(return_winner(player_hand, com_hand))
 
     player_pot = 1000
     dealer_pot = 1000

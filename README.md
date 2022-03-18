@@ -22,13 +22,13 @@ The madatory bet is €30 and you can bet on top of this if you wish.
 
 Random cards are drawn and and the total value of your cards and the dealer's first card is displayed.
 
-The aim of the game is to get to as close to 21 as possible, closer than the dealer, and without going over the value of 21
+The aim of the game is to get to as close to 21 as possible, closer than the dealer, and without going over the value of 21.
 
 ### Each Feature Explained
 
-- __Question Display__
+- __Game Start__
 
-  - The question display will dynamically display every question in the array as the user progress with the quiz
+  - You must enter 'y' on keyboard to begin game or 'n' to close application
 
 ![question-display](https://user-images.githubusercontent.com/91907661/153291336-e0cd84b7-e701-4b47-8d9b-89fe8de6a1b7.png)
 
