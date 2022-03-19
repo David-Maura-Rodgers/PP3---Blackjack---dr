@@ -7,14 +7,13 @@ Here is the live version of my project - https://blackjack-david-r.herokuapp.com
 My Blackjack game runs through a Heroku Terminal. The game will take in user input and deal cards to both the player and the dealer. 
 
 The rules and conditions for the game are outlined as below:
-Cards are drawn from a list data model - [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-There are no jokers in the deck
-The Jack/Queen/King all count as 10.
-The Ace can count as 11 or 1
-
-If the computer has a blackjack (0), then the player loses and vice versa
-If the player_hand is over 21, then the player loses and vice versa
-If none of the above, then the player with the highest hand wins
+- Cards are drawn from a list data model - [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+- There are no jokers in the deck
+- The Jack/Queen/King all count as 10.
+- The Ace can count as 11 or 1
+- If the computer has a blackjack 21 or 0; then the player loses and vice versa
+- If the player's hand is over 21, then the player loses and vice versa
+- If none of the above, then the player with the highest hand wins
 
 ![Home](https://user-images.githubusercontent.com/91907661/159094522-10c92534-568c-4398-9542-15e0346a1be1.png)
 
@@ -30,8 +29,7 @@ Random cards are drawn and the total value of your cards and the dealer's first 
 
 The aim of the game is to get to as close to 21 as possible, closer than the dealer, and without going over the value of 21.
 
-You can choose to draw more cards or stay with the hand you have currently. The dealer then continues to draw cards for themselves providing 
-the total value of their hand is not more than 17.
+You can choose to draw more cards or stay with the hand you have currently. The dealer then continues to draw cards for themselves providing the total value of their hand is not more than 17.
 
 Game concepts and behaviours are explained in more detail in the features section below.
 
@@ -46,14 +44,13 @@ Game concepts and behaviours are explained in more detail in the features sectio
 
 
 - __Place a bet__
-  - All players have a stating pot of €1000
-  - The mandatory bet is €30
-  - You can either choose to stay at €30 or increase this amount by either
+  - All players have a stating pot of €1000.
+  - The mandatory bet is €30.
+  - You can either choose to stay at €30 or increase this amount by either.
   €20, €40, €80.
-  - The dealer will always match the bet that you make
-  - Both the player bet and dealer bet are then added to the round pot
-  - The value of the round pot is either added to or deducted from 
-  value of the player and dealer pots, depending on who wins that round
+  - The dealer will always match the bet that you make.
+  - Both the player bet and dealer bet are then added to the round pot.
+  - The value of the round pot is either added to or deducted from the value of the player and dealer pots, depending on who wins that round.
 
 ![Choose bet amount](https://user-images.githubusercontent.com/91907661/159094900-deee0671-be38-49e2-8549-b6d64ef66aec.png)
 
@@ -61,17 +58,15 @@ Game concepts and behaviours are explained in more detail in the features sectio
 - __Feedback: Hit or Stick__
   - After a bet has been placed, the dealer deals the cards to both player and the dealer
   - The player's first 2 cards are revealed and the the dealers first card is revealed
-  - The player can either choose to draw another random card or stick with
-  the hand(value) they currently have
+  - The player can either choose to draw another random card or stick with the hand(value) they currently have
   - The dealer then continues to draw cards for themselves providing the total value of their hand is not more than 17.
   - Once the dealer's hand is above 17, the total values of each hand are revealed
 
 
 - __Display Winner and remaining Player and Dealer Pots__
-  - After Each round has concluded, the WINNER is displayed to the player
-  - The total pot for player and dealer is then displayed and their
-  values either increment or decrement or stay the same depending on 
-  the result of the wound
+  - After each round has concluded, the WINNER is displayed to the player
+  - The total pot for player and dealer is then displayed and their values either increment or decrement or stay the same depending on 
+  the result of the round
 
 ![Round Display](https://user-images.githubusercontent.com/91907661/159095160-b84c8283-e455-4342-829e-bfb4b591bbf6.png)
 
@@ -80,8 +75,7 @@ Game concepts and behaviours are explained in more detail in the features sectio
 
 - __Play Another Round__
   - The player can then choose to play another round via the input prompt
-  - if they wish to do so the deck is cleared and new cards are drawn
-  to repeat the process
+  - if they wish to do so the deck is cleared and new cards are drawn to repeat the process
   - The values of the player pot and dealer pots are kept on from the previous round
 
 
@@ -102,22 +96,20 @@ I decided to use lists that generated random values for the card values in the g
 I used quite a few functions to execute the game at each step, several while and for loops were used to output data and check if certain 
 processes were complete in order to move ahead to the next step of the game.
 
-Several if statements were used throughout the program to verify inputted data and store this data correctly in addition to ensuring the correct 
-information is displayed to the end user.
+Several if statements were used throughout the program to verify inputted data and store this data correctly in addition to ensuring the correct information is displayed to the end user.
 
 
 ### Testing and Unfixed Bugs
 
 - __Testing__
   - Manual testing in local repository
-  - Testing output and appearance in Heroku terminal
+  - Testing output and appearance to end user in Heroku terminal
   - Passed through PEP8 Linter with no issues - http://pep8online.com/checkresult
 
 
 - __Solved Bugs__
   - Tried adding random cards into list using += which didn't work, so used append function instead
-  - Hand were not being cleared after each round and kept being appended to
-player and dealer hands every time. So I cleared them each time in a while loop as shown below:
+  - Hands were not being cleared after each round and kept being appended to player and dealer hands every time. So I cleared them each time in a while loop as shown below:
 while input("Do you want to start a new round of Blackjack? \
 Type 'y' or 'n': ").lower() == "y":
     print("\n")
@@ -125,8 +117,8 @@ Type 'y' or 'n': ").lower() == "y":
     com_cards = []
     place_bet()
     play_game()
-- Also had a lot of trouble resetting the round_pot value after each round, after a mentor session, we figured out that I had been redefining 
-this variable too many times in the application. Defining these variables once in the global scope of application fixed this issue
+- Also had a lot of trouble resetting the round pot value after each round, after a mentor session, we figured out that I had been redefining this variable too many times in the application. Defining these variables once in the global scope of application fixed this issue
+
 
 - __Remaining Bugs__
   - Dealer's first card is displayed every time a cards is drawn by the player, it does not harm the functionality of the game in any way, 
