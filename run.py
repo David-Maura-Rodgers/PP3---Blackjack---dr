@@ -57,7 +57,7 @@ def place_bet():
     print("Betting always starts at €30\n")
     while not betting_over:
         should_bet = input("Would you like to place a bet? 'y' for yes,\
-'n' for no: ").lower()
+or any key for for no: ").lower()
         if should_bet == "n":
             player_bet = START_BET
             dealer_bet = START_BET
@@ -232,10 +232,15 @@ again or 'n' to pass: ").lower()
 
 # Ask the player if they want to play another round.
 # Will end the round and game no
-while input("Do you want to start a new round of Blackjack? \
-Type 'y' or 'n': ").lower() == "y":
-    print("\n")
-    player_cards = []
-    com_cards = []
-    place_bet()
-    play_game()
+while True:
+    try:
+        while input("Do you want to start a new round of Blackjack? \
+        Please type 'y' to continue: ").lower() == "y":
+            print("\n")
+            player_cards = []
+            com_cards = []
+            place_bet()
+            play_game()
+            print("Good luck!")
+    except ValueError:
+        print("Please enter either y or n")
