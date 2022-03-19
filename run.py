@@ -57,7 +57,7 @@ def place_bet():
     print("Betting always starts at €30\n")
     while not betting_over:
         should_bet = input("Would you like to place a bet? Type 'y' for yes, \
-or type 'n' stay with your current bet: ").lower()
+or type 'n' to stay with your current bet: ").lower()
         if should_bet == "n":
             player_bet = START_BET
             dealer_bet = START_BET
