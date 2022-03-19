@@ -134,6 +134,7 @@ This project was deployed using Code Institute's mock terminal for Heroku
   - Set the buildpack to Python and NodeJS in that order
   - Link Heroku app to this repository
   - Click on deploy
+  - My Heroku link to this application is here: https://dashboard.heroku.com/apps/blackjack-david-r/deploy/github
 
 
 ### Credits for all Content 
