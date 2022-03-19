@@ -104,7 +104,7 @@ Several if statements were used throughout the program to verify inputted data a
 - __Testing__
   - Manual testing in local repository
   - Testing output and appearance to end user in Heroku terminal
-  - Passed through PEP8 Linter with no issues - http://pep8online.com/checkresult
+  - Passed through PEP8 Linter with no issues - http://pep8online.com/
 
 
 - __Solved Bugs__
