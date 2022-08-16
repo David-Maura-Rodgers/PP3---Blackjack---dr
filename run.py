@@ -32,6 +32,7 @@ is_game_over = False
 print("----------------------------")
 print("WELCOME TO MY BLACKJACK GAME")
 print("----------------------------")
+print("\n")
 
 
 def random_card():
@@ -50,7 +51,7 @@ def place_bet():
     Dealer will match this bet and both bets are added to the pot,
     for that round
     '''
-    print("All players must bet €30 at the start of of ever round\n")
+    print("All players must bet €30 at the start of of every round\n")
 
     while True:
         should_bet = input("Would you like to raise the bet? \nType 'y' for yes, \
@@ -85,6 +86,7 @@ def calculate_bet():
     global round_pot
 
     try:
+        print("\n")
         add_bet = int(input("Please enter bet: 20, 40 or 80: "))
 
         if add_bet == 20:
@@ -95,7 +97,6 @@ def calculate_bet():
             print(f"   Player bet this hand: €{player_bet}")
             print(f"   Dealer bet this hand: €{dealer_bet}")
             print(f"   Pot for this round is €{round_pot}\n")
-            print("\n")
             betting_over = True
             play_game()
 
@@ -106,7 +107,6 @@ def calculate_bet():
             print(f"   Player bet this hand: €{player_bet}")
             print(f"   Dealer bet this hand: €{dealer_bet}")
             print(f"   Pot for this round is €{round_pot}\n")
-            print("\n")
             betting_over = True
             play_game()
 
@@ -117,17 +117,16 @@ def calculate_bet():
             print(f"   Player bet this hand: €{player_bet}")
             print(f"   Dealer bet this hand: €{dealer_bet}")
             print(f"   Pot for this round is €{round_pot}\n")
-            print("\n")
             betting_over = True
             play_game()
 
         else:
             print("Incorrect amount: please select 20, 40 or 80")
+            print("\n")
 
     except Exception:
         print("\n")
         print("INVALID INPUT: Please enter a number")
-        print("\n")
         calculate_bet()
 
 
@@ -198,6 +197,9 @@ def play_game():
     global player_pot
     global dealer_pot
 
+    print(f"Player Pot is currently: €{player_pot}")
+    print(f"Dealer Pot is currently: €{dealer_pot}\n")
+
     for card in range(2):
         player_cards.append(random_card())
         com_cards.append(random_card())
@@ -255,6 +257,7 @@ or any key to stick with your current hand: ").lower()
             print("GAME OVER: You lose . . . .")
             print("\n")
             is_game_over = True
+            start_game()
             sys.exit()
 
         elif dealer_pot <= 0:
@@ -262,7 +265,8 @@ or any key to stick with your current hand: ").lower()
             print("GAME OVER: You WIN!!!!!!")
             print("\n")
             is_game_over = True
-            sys.exit()
+            start_game()
+            # sys.exit()
 
 
 # Ask the player if they want to play another round
@@ -275,7 +279,7 @@ def start_game():
     global com_cards
     while True:
         ready = input("Would you like to start a new game of Blackjack? \
-    Please type 'Y' to continue or 'N' to exit: ")
+Please type 'Y' to continue or 'N' to exit: ")
         if ready.lower() == 'y':
             print("\n")
             player_cards = []
