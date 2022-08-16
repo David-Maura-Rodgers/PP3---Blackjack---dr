@@ -50,16 +50,11 @@ def place_bet():
     Dealer will match this bet and both bets are added to the pot,
     for that round
     '''
-    # betting_over = False
-    player_bet = 0
-    dealer_bet = 0
-    global round_pot
-    print("Betting always starts at €30\n")
-    
+    print("All players must bet €30 at the start of of ever round\n")
+
     while True:
-        should_bet = input("Would you like to place a bet? Type 'y' for yes, \
-or type 'n' to stay with your current bet: ")
-        print("\n")
+        should_bet = input("Would you like to raise the bet? \nType 'y' for yes, \
+or type 'n' to stay with your current bet of €30: ")
 
         if should_bet.lower() == "n":
             player_bet = START_BET
@@ -88,9 +83,8 @@ def calculate_bet():
     player_bet = 0
     dealer_bet = 0
     global round_pot
-    
-    while True:
-        
+
+    try:
         add_bet = int(input("Please enter bet: 20, 40 or 80: "))
 
         if add_bet == 20:
@@ -104,7 +98,6 @@ def calculate_bet():
             print("\n")
             betting_over = True
             play_game()
-            break
 
         elif add_bet == 40:
             player_bet = BET_40 + START_BET
@@ -116,7 +109,6 @@ def calculate_bet():
             print("\n")
             betting_over = True
             play_game()
-            break
 
         elif add_bet == 80:
             player_bet = BET_80 + START_BET
@@ -128,12 +120,15 @@ def calculate_bet():
             print("\n")
             betting_over = True
             play_game()
-            break
-        
+
         else:
-            print("\n")
-            print("INVALID INPUT: Please enter a number")
-            print("\n")
+            print("Incorrect amount: please select 20, 40 or 80")
+
+    except Exception:
+        print("\n")
+        print("INVALID INPUT: Please enter a number")
+        print("\n")
+        calculate_bet()
 
 
 def calculate_card_sum(all_cards):
@@ -254,13 +249,14 @@ or any key to stick with your current hand: ").lower()
             place_bet()
             calculate_bet()
             play_game()
-            
+
         elif player_pot <= 0:
             print("Your pot is empty")
             print("GAME OVER: You lose . . . .")
             print("\n")
             is_game_over = True
             sys.exit()
+
         elif dealer_pot <= 0:
             print("Dealer pot is empty!!!")
             print("GAME OVER: You WIN!!!!!!")
@@ -271,23 +267,32 @@ or any key to stick with your current hand: ").lower()
 
 # Ask the player if they want to play another round
 # Will end the game if user selects 'N'
-while True:
-    ready = input("Would you like to start a new round of Blackjack? \
-Please type 'Y' to continue or 'N' to exit: ")
-    if ready.lower() == 'y':
-        print("\n")
-        player_cards = []
-        com_cards = []
-        place_bet()
-        calculate_bet()
-        play_game()
-        print("Good luck!")
-        break
-    elif ready.lower() == 'n':
-        print("\n")
-        print("Goodbye. Hopefully see you soon!")
-        print("\n")
-        break
-    else:
-        print("INVALID INPUT: Please enter either Y or N")
-        print("\n")
+def start_game():
+    '''
+    Function: Play
+    '''
+    global player_cards
+    global com_cards
+    while True:
+        ready = input("Would you like to start a new game of Blackjack? \
+    Please type 'Y' to continue or 'N' to exit: ")
+        if ready.lower() == 'y':
+            print("\n")
+            player_cards = []
+            com_cards = []
+            place_bet()
+            calculate_bet()
+            play_game()
+            print("Good luck!")
+            break
+        elif ready.lower() == 'n':
+            print("\n")
+            print("Goodbye. Hopefully see you soon!")
+            print("\n")
+            break
+        else:
+            print("INVALID INPUT: Please enter either Y or N")
+            print("\n")
+
+
+start_game()
