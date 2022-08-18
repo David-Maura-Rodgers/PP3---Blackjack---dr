@@ -200,7 +200,7 @@ def play_game():
     global dealer_pot
 
     print(f"Player Pot is currently: €{player_pot}")
-    print(f"Dealer Pot is currently: €{dealer_pot}\n")
+    print(f"Dealer Pot is currently: €{dealer_pot}")
 
     for card in range(2):
         player_cards.append(random_card())
@@ -209,8 +209,8 @@ def play_game():
     while not round_over:
         player_hand = calculate_card_sum(player_cards)
         com_hand = calculate_card_sum(com_cards)
-        print(f"Dealers first card is: {com_cards[0]}\n")
-        print(f"Your hand: {player_cards} current score: {player_hand}\n")
+        print(f"Dealers first card is: {com_cards[0]}")
+        print(f"Your hand: {player_cards} current score: {player_hand}")
         print("\n")
         if player_hand == 0 or com_hand == 0 or player_hand > 21:
             round_over = True
@@ -241,7 +241,7 @@ or 'N' to stick with your current hand: \n")
         com_hand = calculate_card_sum(com_cards)
 
     print(f"Your final hand: {player_cards}, final score: {player_hand}")
-    print(f"Computer's final hand: {com_cards}, final score: {com_hand}\n")
+    print(f"Computer's final hand: {com_cards}, final score: {com_hand}")
 
     the_winner = return_winner(player_hand, com_hand)
     print(f"THE WINNER: {the_winner}")
@@ -253,7 +253,7 @@ or 'N' to stick with your current hand: \n")
         player_pot = player_pot - round_pot
         dealer_pot = dealer_pot + round_pot
     print(f"Player Pot is now: €{player_pot}")
-    print(f"Dealer Pot is now: €{dealer_pot}\n")
+    print(f"Dealer Pot is now: €{dealer_pot}")
 
     round_pot = 0
 
