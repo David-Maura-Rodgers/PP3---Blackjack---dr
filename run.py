@@ -1,6 +1,6 @@
 # TO RUN CODE: python3 run.py
 import random
-import sys
+# import sys
 import os
 
 # Hold random cards and the value of each hand
@@ -54,8 +54,8 @@ def place_bet():
     print("All players must bet €30 at the start of of every round\n")
 
     while True:
-        should_bet = input("Would you like to raise the bet? \nType 'y' for yes, \
-or type 'n' to stay with your current bet of €30: ")
+        should_bet = input("Would you like to raise the bet? \nType 'Y' for yes, \
+or type 'N' to stay with your current bet of €30: ")
 
         if should_bet.lower() == "n":
             player_bet = START_BET
@@ -80,7 +80,7 @@ def calculate_bet():
     Dealer will match this bet and both bets are added to the pot,
     for that round
     '''
-    global betting_over
+    global betting_over  # to be removed from this function??
     player_bet = 0
     dealer_bet = 0
     global round_pot
@@ -184,7 +184,7 @@ def play_game():
     FUNCTION:
     Will start the game - Deal random cards into player's and dealer's hands
     Check conditions to find the winner of the round
-    Check for end game condition determine the winner
+    Check for end game condition to determine the winner
     '''
     player_cards = []
     com_cards = []
@@ -214,16 +214,27 @@ def play_game():
             round_over = True
             os.system('cls||clear')
         else:
-            player_deal_again = input("Type 'y' to deal \
-or any key to stick with your current hand: ").lower()
-            print("\n")
-            if player_deal_again == "y":
-                player_cards.append(random_card())
-                print(f"Dealer's hand: {com_cards} current score: {com_hand}")
-            else:
-                round_over = True
-                os.system('cls||clear')
+            while True:
+                player_deal_again = input("Type 'Y' to deal \
+or 'N' to stick with your current hand: ")
+                # print("\n")
 
+                if player_deal_again.lower() == "y":
+                    player_cards.append(random_card())
+                    print(
+                        f"Dealer's hand: {com_cards} current score: {com_hand}"
+                    )
+                    break
+                elif player_deal_again.lower() == "n":
+                    round_over = True
+                    os.system('cls||clear')
+                    break
+                else:
+                    print("INVALID INPUT: Please enter either Y or N")
+                    print("\n")
+
+    # Loop to ensure that dealer will be dealt a card while their
+    # score is less than 17
     while com_hand != 0 and com_hand < 17:
         com_cards.append(random_card())
         com_hand = calculate_card_sum(com_cards)
@@ -258,7 +269,7 @@ or any key to stick with your current hand: ").lower()
             print("\n")
             is_game_over = True
             start_game()
-            sys.exit()
+            # sys.exit()
 
         elif dealer_pot <= 0:
             print("Dealer pot is empty!!!")
