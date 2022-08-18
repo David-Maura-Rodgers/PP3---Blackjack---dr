@@ -51,6 +51,10 @@ def place_bet():
     Dealer will match this bet and both bets are added to the pot,
     for that round
     '''
+    player_bet = 0
+    dealer_bet = 0
+    global round_pot
+
     print("All players must bet €30 at the start of of every round\n")
 
     while True:
@@ -215,9 +219,9 @@ def play_game():
             os.system('cls||clear')
         else:
             while True:
-                player_deal_again = input("Type 'Y' to deal \
+                player_deal_again = input("Type 'Y' to deal another card \
 or 'N' to stick with your current hand: ")
-                # print("\n")
+                print("\n")
 
                 if player_deal_again.lower() == "y":
                     player_cards.append(random_card())
@@ -284,7 +288,7 @@ or 'N' to stick with your current hand: ")
 # Will end the game if user selects 'N'
 def start_game():
     '''
-    Function: Play
+    Function: Play the game
     '''
     global player_cards
     global com_cards
