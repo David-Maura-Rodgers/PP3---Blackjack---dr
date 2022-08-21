@@ -38,7 +38,7 @@ or as close to 21 as possible
 You can be dealt as many cards as you like until you exceed 21 \
 You will go bust and lose the round if this happens
 You can stick with if you don't want anymore cards
-Dealer will keep dealing cards for themsleves as long ar thier \
+Dealer will keep dealing cards for themself as long as their \
 total value is below 17
 Both player and dealer start the game with €1,000
 All bets start at €30 by default
@@ -280,7 +280,7 @@ or 'N' to stick with your current hand: \n")
                     print("Invalid Input: Please enter either Y or N")
                     print("\n")
 
-    # Loop to ensure that dealer will be dealt a card while their
+    # Loop to ensure that the dealer will be dealt a card while their
     # score is less than 17
     while com_hand != 0 and com_hand < 17:
         com_cards.append(random_card())
