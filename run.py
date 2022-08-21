@@ -29,9 +29,7 @@ dealer_pot = 1000
 # Check end game condition
 is_game_over = False
 
-print("----------------------------")
 print("WELCOME TO MY BLACKJACK GAME")
-print("----------------------------")
 
 print("""
 ----------- Blackjack House Rules ----------- \n

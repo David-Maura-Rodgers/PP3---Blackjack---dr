@@ -2,7 +2,7 @@
 
 # Blackjack Python Game
 
-Here is the live version of my project - https://blackjack-david-r.herokuapp.com/
+Here is the live version of my project - [Blackjack Python Game](https://david-r-blackjack.herokuapp.com/)
 
 My Blackjack game runs through a Heroku Terminal. The game will take in user input and deal cards to both the player and the dealer. 
 
