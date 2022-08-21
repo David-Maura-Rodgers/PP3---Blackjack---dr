@@ -1,5 +1,6 @@
 # TO RUN CODE: python3 run.py
 import random
+import sys
 import os
 
 # Hold random cards and the value of each hand
@@ -9,7 +10,7 @@ player_hand = 0
 com_hand = 0
 
 # Value of bets entered
-# Betting and round over conditions
+# Betting over and round over conditions
 START_BET = 30
 BET_20 = 20
 BET_40 = 40
@@ -60,7 +61,7 @@ def random_card():
 def place_bet():
     '''
     FUNCTION: Ask player to place bet from 3 options: 20, 40, 80
-    Dealer will match this bet and both bets are added to the pot,
+    Dealer will match this bet and both bets are added to the pot
     for that round
     '''
     player_bet = 0
@@ -95,7 +96,7 @@ def calculate_bet():
     Dealer will match this bet and both bets are added to the pot,
     for that round
     '''
-    global betting_over  # to be removed from this function??
+    global betting_over
     player_bet = 0
     dealer_bet = 0
     global round_pot
@@ -167,7 +168,7 @@ def calculate_card_sum(all_cards):
 
 def return_winner(p_hand, c_hand):
     '''
-    FUNCTION: Compare values of player_hand and com_hand and determine
+    FUNCTION: Compare values of player hand and com hand and determine
     the winner
     '''
     winner = ""
@@ -199,6 +200,31 @@ def return_winner(p_hand, c_hand):
         print("\n")
         print("You lose 😤\n")
     return winner
+
+
+def play_again():
+    """
+    Player can decide if they want to play
+    a new game or exit it.
+    """
+    global player_pot
+    global dealer_pot
+
+    while True:
+        try_again = input("Would you like to play again? \
+Please enter either Y or N: \n")
+        if try_again.lower() == 'y':
+            player_pot = 1000
+            dealer_pot = 1000
+            start_game()
+            break
+        elif try_again.lower() == 'n':
+            os.system('cls||clear')
+            print("Thanks for playing. Hopefully see you soon")
+            sys.exit()
+            break
+        else:
+            print("Invalid Input: Please enter either Y or N")
 
 
 def play_game():
@@ -243,8 +269,7 @@ or 'N' to stick with your current hand: \n")
                     player_cards.append(random_card())
                     print("\n")
                     print(
-                        f"Dealer's hand: {com_cards} \
-current score: {com_hand}"
+                        f"Dealer's hand: {com_cards} score: {com_hand}"
                         )
                     break
                 elif player_deal_again.lower() == "n":
@@ -289,20 +314,20 @@ current score: {com_hand}"
             print("Your pot is empty")
             print("GAME OVER: You lose . . . .\n")
             is_game_over = True
-            start_game()
+            play_again()
 
         elif dealer_pot <= 0:
             print("Dealer pot is empty!!!")
             print("GAME OVER: You WIN!!!!!!\n")
             is_game_over = True
-            start_game()
+            play_again()
 
 
 # Ask the player if they want to play another round
 # Will end the game if user selects 'N'
 def start_game():
     '''
-    Function: Play the game
+    Function: Choose to start a new game
     '''
     global player_cards
     global com_cards
