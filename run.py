@@ -1,6 +1,5 @@
 # TO RUN CODE: python3 run.py
 import random
-import sys
 import os
 
 # Hold random cards and the value of each hand
@@ -29,7 +28,7 @@ dealer_pot = 1000
 # Check end game condition
 is_game_over = False
 
-print("WELCOME TO MY BLACKJACK GAME")
+print("        WELCOME TO MY BLACKJACK GAME")
 
 print("""
 ----------- Blackjack House Rules ----------- \n
@@ -136,7 +135,6 @@ def calculate_bet():
             play_game()
 
         else:
-            print("\n")
             print("Incorrect amount: please select 20, 40 or 80")
             print("\n")
 
@@ -243,9 +241,11 @@ or 'N' to stick with your current hand: \n")
 
                 if player_deal_again.lower() == "y":
                     player_cards.append(random_card())
+                    print("\n")
                     print(
-                        f"Dealer's hand: {com_cards} current score: {com_hand}"
-                    )
+                        f"Dealer's hand: {com_cards} \
+current score: {com_hand}"
+                        )
                     break
                 elif player_deal_again.lower() == "n":
                     round_over = True

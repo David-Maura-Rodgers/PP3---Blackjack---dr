@@ -17,6 +17,8 @@ The rules and conditions for the game are outlined as below:
 
 ![Home](https://user-images.githubusercontent.com/91907661/159094522-10c92534-568c-4398-9542-15e0346a1be1.png)
 
+<br>
+<hr>
 
 ## How to play
 The game begins by asking you if you would like to play a game of Blackjack, if yes, the game begins.
@@ -33,8 +35,10 @@ You can choose to draw more cards or stay with the hand you have currently. The 
 
 Game concepts and behaviours are explained in more detail in the features section below.
 
+<br>
+<hr>
 
-### Each Feature Explained
+## Each Feature Explained
 
 - __Game Start__
 
@@ -89,8 +93,10 @@ Game concepts and behaviours are explained in more detail in the features sectio
   - Have player choose from a range of starting pots
   - Have visuals added with corresponding card images for the cards drawn by the player
 
+<br>
+<hr>
 
-### Data Model and Methods Used
+## Data Model and Methods Used
 I decided to use lists that generated random values for the card values in the game. This was done using random and append methods.
 
 I used quite a few functions to execute the game at each step, several while and for loops were used to output data and check if certain 
@@ -98,33 +104,17 @@ processes were complete in order to move ahead to the next step of the game.
 
 Several if statements were used throughout the program to verify inputted data and store this data correctly in addition to ensuring the correct information is displayed to the end user.
 
+<br>
+<hr>
 
-### Testing and Unfixed Bugs
+## Testing
+
+Test cases and results can be found in the [TESTING.md](TESTING.md) file. This was moved due to the size of the file.
 
 - __Testing__
   - Manual testing in local repository
   - Testing output and appearance to end user in Heroku terminal
   - Passed through PEP8 Linter with no issues - http://pep8online.com/
-
-
-- __Solved Bugs__
-  - Tried adding random cards into list using += which didn't work, so used append function instead
-  - Hands were not being cleared after each round and kept being appended to player and dealer hands every time. So I cleared them each time in a while loop as shown below:
-while input("Do you want to start a new round of Blackjack? \
-Type 'y' or 'n': ").lower() == "y":
-    print("\n")
-    player_cards = []
-    com_cards = []
-    place_bet()
-    play_game()
-- Also had a lot of trouble resetting the round pot value after each round, after a mentor session, we figured out that I had been redefining this variable too many times in the application. Defining these variables once in the global scope of application fixed this issue
-
-
-- __Remaining Bugs__
-  - Dealer's first card is displayed every time a cards is drawn by the player, it does not harm the functionality of the game in any way, 
-it would just be tidier if it only displayed once at the beginning of every round
-  - Can't get application to tell user to enter either 20, 40 or 80 only if user types any other value
-
 
 ### Deployment
 This project was deployed using Code Institute's mock terminal for Heroku
