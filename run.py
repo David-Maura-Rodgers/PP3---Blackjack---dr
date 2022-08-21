@@ -1,6 +1,6 @@
 # TO RUN CODE: python3 run.py
 import random
-# import sys
+import sys
 import os
 
 # Hold random cards and the value of each hand
@@ -31,7 +31,23 @@ is_game_over = False
 
 print("----------------------------")
 print("WELCOME TO MY BLACKJACK GAME")
-print("----------------------------\n")
+print("----------------------------")
+
+print("""
+----------- Blackjack House Rules ----------- \n
+The Winner of each round is the player who hits 21 in their hand \
+or as close to 21 as possible
+You can be dealt as many cards as you like until you exceed 21 \
+You will go bust and lose the round if this happens
+You can stick with if you don't want anymore cards
+Dealer will keep dealing cards for themsleves as long ar thier \
+total value is below 17
+Both player and dealer start the game with €1,000
+All bets start at €30 by default
+The dealer will always match your bet should you chose to raise
+The game is over when either the player or dealer pot (money) \
+goes below €0 \n
+""")
 
 
 def random_card():
@@ -59,7 +75,6 @@ def place_bet():
     while True:
         should_bet = input("Would you like to raise the bet? \nType 'Y' for yes, \
 or type 'N' to stay with your current bet of €30: \n")
-
         if should_bet.lower() == "n":
             player_bet = START_BET
             dealer_bet = START_BET
@@ -73,7 +88,7 @@ or type 'N' to stay with your current bet of €30: \n")
             calculate_bet()
         else:
             print("\n")
-            print("INVALID: Please type either 'Y' or 'N'")
+            print("Invalid Input: Please type either 'Y' or 'N'")
             print("\n")
 
 
@@ -96,9 +111,9 @@ def calculate_bet():
             player_bet = BET_20 + START_BET
             dealer_bet = player_bet
             round_pot = 100
-            print(f"   Player bet this hand: €{player_bet}")
-            print(f"   Dealer bet this hand: €{dealer_bet}")
-            print(f"   Pot for this round is €{round_pot}")
+            print(f"    Player bet this hand: €{player_bet}")
+            print(f"    Dealer bet this hand: €{dealer_bet}")
+            print(f"    Pot for this round is €{round_pot}\n")
             betting_over = True
             play_game()
 
@@ -106,9 +121,9 @@ def calculate_bet():
             player_bet = BET_40 + START_BET
             dealer_bet = player_bet
             round_pot = 140
-            print(f"   Player bet this hand: €{player_bet}")
-            print(f"   Dealer bet this hand: €{dealer_bet}")
-            print(f"   Pot for this round is €{round_pot}")
+            print(f"    Player bet this hand: €{player_bet}")
+            print(f"    Dealer bet this hand: €{dealer_bet}")
+            print(f"    Pot for this round is €{round_pot}\n")
             betting_over = True
             play_game()
 
@@ -116,19 +131,21 @@ def calculate_bet():
             player_bet = BET_80 + START_BET
             dealer_bet = player_bet
             round_pot = 220
-            print(f"   Player bet this hand: €{player_bet}")
-            print(f"   Dealer bet this hand: €{dealer_bet}")
-            print(f"   Pot for this round is €{round_pot}")
+            print(f"    Player bet this hand: €{player_bet}")
+            print(f"    Dealer bet this hand: €{dealer_bet}")
+            print(f"    Pot for this round is €{round_pot}\n")
             betting_over = True
             play_game()
 
         else:
             print("\n")
             print("Incorrect amount: please select 20, 40 or 80")
+            print("\n")
 
     except Exception:
         print("\n")
-        print("INVALID INPUT: Please enter a number")
+        print("Invalid Input: Please enter a number")
+        print("\n")
         calculate_bet()
 
 
@@ -159,24 +176,31 @@ def return_winner(p_hand, c_hand):
     '''
     winner = ""
     if p_hand == c_hand:
+        print("\n")
         print("This round is a draw . . .\n")
     elif c_hand == 0:
         winner = "Dealer"
+        print("\n")
         print("You lose - dealer has Blackjack 😱\n")
     elif p_hand == 0:
         winner = "Player"
+        print("\n")
         print("You Win - with a Blackjack 😎\n")
     elif p_hand > 21:
         winner = "Dealer"
+        print("\n")
         print("You went over. You lose 😭\n")
     elif c_hand > 21:
         winner = "Player"
+        print("\n")
         print("Opponent went over. You win 😁\n")
     elif p_hand > c_hand:
         winner = "Player"
+        print("\n")
         print("You win 😃\n")
     else:
         winner = "Dealer"
+        print("\n")
         print("You lose 😤\n")
     return winner
 
@@ -199,9 +223,9 @@ def play_game():
     global player_pot
     global dealer_pot
 
-    print(f"Player Pot is currently: €{player_pot}")
-    print(f"Dealer Pot is currently: €{dealer_pot}")
-
+    print(f"    Player Pot is currently: €{player_pot}")
+    print(f"    Dealer Pot is currently: €{dealer_pot}")
+    print("\n")
     for card in range(2):
         player_cards.append(random_card())
         com_cards.append(random_card())
@@ -209,9 +233,8 @@ def play_game():
     while not round_over:
         player_hand = calculate_card_sum(player_cards)
         com_hand = calculate_card_sum(com_cards)
-        print(f"Dealers first card is: {com_cards[0]}")
-        print(f"Your hand: {player_cards} current score: {player_hand}")
-        print("\n")
+        print(f"Dealer's first card is: {com_cards[0]}\n")
+        print(f"Your hand: {player_cards} current score: {player_hand}\n")
         if player_hand == 0 or com_hand == 0 or player_hand > 21:
             round_over = True
             os.system('cls||clear')
@@ -231,7 +254,7 @@ or 'N' to stick with your current hand: \n")
                     os.system('cls||clear')
                     break
                 else:
-                    print("INVALID INPUT: Please enter either Y or N")
+                    print("Invalid Input: Please enter either Y or N")
                     print("\n")
 
     # Loop to ensure that dealer will be dealt a card while their
@@ -254,6 +277,7 @@ or 'N' to stick with your current hand: \n")
         dealer_pot = dealer_pot + round_pot
     print(f"Player Pot is now: €{player_pot}")
     print(f"Dealer Pot is now: €{dealer_pot}")
+    print("\n")
 
     round_pot = 0
 
@@ -268,14 +292,12 @@ or 'N' to stick with your current hand: \n")
             print("GAME OVER: You lose . . . .\n")
             is_game_over = True
             start_game()
-            # sys.exit()
 
         elif dealer_pot <= 0:
             print("Dealer pot is empty!!!")
             print("GAME OVER: You WIN!!!!!!\n")
             is_game_over = True
             start_game()
-            # sys.exit()
 
 
 # Ask the player if they want to play another round
@@ -286,23 +308,25 @@ def start_game():
     '''
     global player_cards
     global com_cards
+
     while True:
         ready = input("Would you like to start a new game of Blackjack? \
 Please type 'Y' to continue or 'N' to exit: \n")
         if ready.lower() == 'y':
+            print("\n")
+            os.system('cls||clear')
             player_cards = []
             com_cards = []
             place_bet()
             calculate_bet()
             play_game()
-            print("Good luck!")
             break
         elif ready.lower() == 'n':
             print("\n")
             print("Goodbye. Hopefully see you soon!")
             break
         else:
-            print("INVALID INPUT: Please enter either Y or N")
+            print("Invalid Input: Please enter either Y or N")
             print("\n")
 
 
