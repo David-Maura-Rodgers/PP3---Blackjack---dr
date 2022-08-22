@@ -29,17 +29,16 @@ dealer_pot = 1000
 # Check end game condition
 is_game_over = False
 
-print("        WELCOME TO MY BLACKJACK GAME")
 
 print("""
 ----------- Blackjack House Rules ----------- \n
 The Winner of each round is the player who hits 21 in their hand \
 or as close to 21 as possible
-You can be dealt as many cards as you like until you exceed 21 \
+Blackjack is awarded if you or the dealer have 21 with only 2 cards
+You can be dealt as many cards as you like until you exceed 21. \
 You will go bust and lose the round if this happens
-You can stick with if you don't want anymore cards
 Dealer will keep dealing cards for themself as long as their \
-total value is below 17
+total value is less than 17
 Both player and dealer start the game with €1,000
 All bets start at €30 by default
 The dealer will always match your bet should you chose to raise
@@ -71,8 +70,8 @@ def place_bet():
     print("All players must bet €30 at the start of of every round.\n")
 
     while True:
-        should_bet = input("Would you like to raise the bet? \nType 'Y' for yes, \
-or type 'N' to stay with your current bet of €30: \n")
+        should_bet = input("Would you like to raise the bet? \nType 'y' for yes, \
+or type 'n' to stay with your current bet of €30: \n")
         if should_bet.lower() == "n":
             player_bet = START_BET
             dealer_bet = START_BET
@@ -86,7 +85,7 @@ or type 'N' to stay with your current bet of €30: \n")
             calculate_bet()
         else:
             print("\n")
-            print("Invalid Input: Please type either 'Y' or 'N'")
+            print("Invalid Input: Please type either 'y' or 'n'")
             print("\n")
 
 
@@ -212,7 +211,7 @@ def play_again():
 
     while True:
         try_again = input("Would you like to play again? \
-Please enter either Y or N: \n")
+Please enter either 'y' or 'n': \n")
         if try_again.lower() == 'y':
             player_pot = 1000
             dealer_pot = 1000
@@ -262,8 +261,8 @@ def play_game():
             os.system('cls||clear')
         else:
             while True:
-                player_deal_again = input("Type 'Y' to deal another card \
-or 'N' to stick with your current hand: \n")
+                player_deal_again = input("Type 'y' to deal another card \
+or 'n' to stick with your current hand: \n")
 
                 if player_deal_again.lower() == "y":
                     player_cards.append(random_card())
@@ -277,7 +276,7 @@ or 'N' to stick with your current hand: \n")
                     os.system('cls||clear')
                     break
                 else:
-                    print("Invalid Input: Please enter either Y or N")
+                    print("Invalid Input: Please enter either 'y' or 'n'")
                     print("\n")
 
     # Loop to ensure that the dealer will be dealt a card while their
@@ -328,13 +327,14 @@ or 'N' to stick with your current hand: \n")
 def start_game():
     '''
     Function: Choose to start a new game
+    when app launches
     '''
     global player_cards
     global com_cards
 
     while True:
         ready = input("Would you like to start a new game of Blackjack? \
-Please type 'Y' to continue or 'N' to exit: \n")
+Please type 'y' to continue or 'n' to exit: \n")
         if ready.lower() == 'y':
             print("\n")
             os.system('cls||clear')
@@ -349,7 +349,7 @@ Please type 'Y' to continue or 'N' to exit: \n")
             print("Goodbye. Hopefully see you soon!")
             break
         else:
-            print("Invalid Input: Please enter either Y or N")
+            print("Invalid Input: Please enter either 'y' or 'n'")
             print("\n")
 
 
